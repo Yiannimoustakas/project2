@@ -1,0 +1,2 @@
+class TestPair < ApplicationRecord
+end
