@@ -1,6 +1,6 @@
 class SolutionsController < ApplicationController
   def new
-
+    @solution = Solution.create
   end
 
   def create
@@ -8,7 +8,7 @@ class SolutionsController < ApplicationController
   end
 
   def edit
-
+    @solution = Solution.find(params[:id])
   end
 
   def update
@@ -16,14 +16,15 @@ class SolutionsController < ApplicationController
   end
 
   def index
-
+    @solutions = Solution.all
   end
 
   def show
-
+    @solution = Solution.find(params[:id])
   end
 
   def destroy
-    
+    solution = Solution.find(params[:id])
+    solution.destroy()
   end
 end
