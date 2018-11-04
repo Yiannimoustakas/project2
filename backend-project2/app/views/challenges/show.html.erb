@@ -3,6 +3,11 @@
 
 <%= @challenge.name%>
 <br>
+<% if @current_user.present? %>
+<%= link_to 'Edit Challenge', edit_challenge_path(@challenge.id) %><br>
+<%= link_to 'Delete Challenge', challenge_path(@challenge), method: 'delete' %>
+<%= link_to 'Add A Test Pair', new_test_pair_path %><br>
+<% end %>
 <br>
 <p>Description: <%= @challenge.description %></p>
 <p>Created By: <%= @challenge.user.name %>
@@ -21,3 +26,5 @@
 </ul>
 
 <br>
+
+<%= link_to "Start A Solution For This Challenge", new_solution_path %>

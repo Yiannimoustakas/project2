@@ -4,9 +4,9 @@
 <% end %>
 
 <ul>
-  <% @challenge.each do |challenge| %>
+  <% @challenges.each do |challenge| %>
     <li>
-     <%= challenge.name %>
+     <%= link_to challenge.name, challenge_path(challenge.id)  %>
     </li>
   <% end %>
 </ul>

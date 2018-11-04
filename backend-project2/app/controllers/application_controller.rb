@@ -23,7 +23,7 @@ class ApplicationController < ActionController::Base
       @current_user = User.find_by id: session[:user_id]
     end
 
-    #make sure we actially found a valid user (i.e the user ID in)
+    #make sure we actually found a valid user (i.e the user ID in)
     #the session wasn't stale, from a deleted account)
     #and if we didn't get a valid user in @current_user,
     #then we clear the session key.
