@@ -28,6 +28,6 @@ class TestPairsController < ApplicationController
 
   private
   def challenge_params
-    params.require(:).permit()
+    params.require(:test_pair).permit(:input, :output)
   end
 end
