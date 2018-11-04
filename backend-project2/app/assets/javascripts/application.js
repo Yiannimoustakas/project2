@@ -14,3 +14,5 @@
 //= require activestorage
 //= require_tree .
 //= require codemirror
+//= require jquery
+//= require codemirror/modes/javascript
