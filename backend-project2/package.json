@@ -1,5 +1,7 @@
 {
   "name": "backend-project2",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "codemirror": "^5.41.0"
+  }
 }
