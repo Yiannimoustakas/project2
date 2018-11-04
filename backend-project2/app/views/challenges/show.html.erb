@@ -1,2 +1,23 @@
-<h1>Challenges#show</h1>
-<p>Find me in app/views/challenges/show.html.erb</p>
+<%= link_to "BACK TO CHALLENGES", challenges_path %> <br><br>
+
+
+<%= @challenge.name%>
+<br>
+<br>
+<p>Description: <%= @challenge.description %></p>
+<p>Created By: <%= @challenge.user.name %>
+
+
+<br>
+
+
+<ul>
+  <% @challenge.test_pairs.each do |test_pair|%>
+    <li>
+      <%= test_pair.input %> <br>
+      <%= test_pair.output %> <br>
+    </li>
+  <% end %>
+</ul>
+
+<br>

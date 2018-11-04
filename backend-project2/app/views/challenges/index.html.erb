@@ -1,2 +1,12 @@
-<h1>Challenges#index</h1>
-<p>Find me in app/views/challenges/index.html.erb</p>
+<h2>All Challenges</h2>
+<% if @current_user.present? %>
+<%= link_to 'Add New Challenge', new_challenge_path %>
+<% end %>
+
+<ul>
+  <% @challenge.each do |challenge| %>
+    <li>
+     <%= challenge.name %>
+    </li>
+  <% end %>
+</ul>
