@@ -1,2 +1,34 @@
-<h1>Solutions#new</h1>
-<p>Find me in app/views/solutions/new.html.erb</p>
+<br>
+<div class="grid-Container">
+  <div class="code-textarea">
+    <form class="code-form" action='/solutions' method="post">
+      <input type="text" name="challenge_id" value="5">
+      <textarea name="code" class="codearea" id="editor"><%= @code_snippet %></textarea>
+      <input type="submit" value="Save Solution">
+    </form>
+  </div>
+  <button type="button" name="button" onClick='on_click()'>Run Code</button>
+</div>
+
+<script>
+  let editor;
+  $(document).ready(function(){
+    let myTextArea = $('.codearea')[0];
+    editor = CodeMirror.fromTextArea( myTextArea, {
+      value: myTextArea.value,
+      theme: 'ambiance',
+      lineNumbers: true,});
+  });
+
+  const on_click = () => {
+    let js = editor.getValue();
+    let s = document.createElement('script');
+    s.textContent = `let funk = str => {
+      ${js}
+    }`;
+    document.body.appendChild(s);
+    funk("hello world");
+    s.remove()
+  }
+
+</script>

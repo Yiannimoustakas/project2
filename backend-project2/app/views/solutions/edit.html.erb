@@ -1,2 +1,32 @@
-<h1>Solutions#edit</h1>
-<p>Find me in app/views/solutions/edit.html.erb</p>
+<div class="grid-Container">
+  <div class="code-textarea">
+    <form class="" action='/solutions' method="post">
+      <input type="text" name="challenge_id" value=<%= @solution.challenge_id %>>
+      <textarea name="code" class="codearea" id="editor"><%= @solution.code %></textarea>
+      <input type="submit" value="Save Solution">
+    </form>
+  </div>
+</div>
+
+<script>
+  let editor;
+  $(document).ready(function(){
+    let myTextArea = $('.codearea')[0];
+    editor = CodeMirror.fromTextArea( myTextArea, {
+      value: myTextArea.value,
+      theme: 'ambiance',
+      lineNumbers: true,});
+  });
+
+  const on_click = () => {
+    let js = editor.getValue();
+    let s = document.createElement('script');
+    s.textContent = `let funk = str => {
+      ${js}
+    }`;
+    document.body.appendChild(s);
+    funk("hello world");
+    s.remove()
+  }
+
+</script>
