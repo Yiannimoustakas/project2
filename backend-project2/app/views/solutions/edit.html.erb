@@ -1,6 +1,6 @@
 <div class="grid-Container">
   <div class="challenge-info">
-    <h2><%= @challenge.name %></h2>
+    <h2><a href="/challenges/<%= @challenge.id %>"><%= @challenge.name %></a> </h2>
     <p><%= @challenge.description %></p>
   </div>
   <div class="code-textarea">
