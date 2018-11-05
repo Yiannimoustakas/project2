@@ -8,6 +8,8 @@ class ChallengesController < ApplicationController
 
   def create
     Challenge.create(challenge_params)
+    @challenge = Challenge.create(challenge_params)
+    @challenge.user = @current_user
     redirect_to challenges_path
   end
 

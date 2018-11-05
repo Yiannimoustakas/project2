@@ -1,7 +1,7 @@
 <h2>All Challenges</h2>
-<% if @current_user.present? %>
+<%# <% if @current_user.present? %>
 <%= link_to 'Add New Challenge', new_challenge_path %>
-<% end %>
+<%# <% end %>
 
 <ul>
   <% @challenges.each do |challenge| %>
