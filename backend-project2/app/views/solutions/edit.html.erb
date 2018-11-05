@@ -1,11 +1,13 @@
+<br>
 <div class="grid-Container">
   <div class="code-textarea">
-    <form class="" action='/solutions' method="post">
-      <input type="text" name="challenge_id" value=<%= @solution.challenge_id %>>
-      <textarea name="code" class="codearea" id="editor"><%= @solution.code %></textarea>
+    <form class="code-form" action='/solutions' method="post">
+      <input type="hidden" name="challenge_id" value=<%= @challenge.id %>>
+      <textarea name="code" class="codearea" id="editor"><%= @code_snippet %></textarea>
       <input type="submit" value="Save Solution">
     </form>
   </div>
+  <button type="button" name="button" onClick='on_click()'>Run Code</button>
 </div>
 
 <script>

@@ -4,15 +4,16 @@ class SolutionsController < ApplicationController
 
   def new
     # route to here from a challenge show page, so challenge id will be in params.
-    @challenge_id = Challenge.first
+    @challenge = Challenge.first
+    @inputs = @challenge.test_pairs.pluck(:input)
+    @outputs = @challenge.test_pairs.pluck(:output)
     @solution = Solution.new
-    @code_snippet = 'console.log(str)'
   end
 
   def create
     solution = Solution.new solution_params
-    solution.user_id = User.first.id
-    raise 'hell'
+    solution.user_id = User.first.id #should be 'current user'
+    solution.save
   end
 
   def edit
