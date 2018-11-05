@@ -4,16 +4,22 @@ class SolutionsController < ApplicationController
 
   def new
     # route to here from a challenge show page, so challenge id will be in params.
-    @challenge = Challenge.first
+    # @challenge = Challenge.first Hard Code.
+    # This is the params passed form the link_to on challenge show page
+    @challenge = Challenge.find params[:id]
+    # raise "hell"
     @inputs = @challenge.test_pairs.pluck(:input)
     @outputs = @challenge.test_pairs.pluck(:output)
     @solution = Solution.new
     @solution.challenge_id = @challenge.id
+    @solution.save
   end
 
   def create
     solution = Solution.new solution_params
+    # @challenge = Challenge.find params[:id]
     solution.user_id = User.first.id #should be 'current user'
+    solution.challenge_id = params[:challenge_id]
     solution.save
     redirect_to controller: 'solutions', action: 'show', id: solution.id
   end
