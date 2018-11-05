@@ -1,0 +1,5 @@
+<form class="code-form" action='/solutions' method="post">
+  <input type="hidden" name="challenge_id" value=<%= @solution.challenge_id %>>
+  <textarea name="code" class="codearea" id="editor"><%= @solution.code %></textarea>
+  <input type="submit" class="submit-button" value="Save Solution">
+</form>

@@ -1,11 +1,7 @@
-<br>
+
 <div class="grid-Container">
   <div class="code-textarea">
-    <form class="code-form" action='/solutions' method="post">
-      <input type="hidden" name="challenge_id" value=<%= @challenge.id %>>
-      <textarea name="code" class="codearea" id="editor"><%= @code_snippet %></textarea>
-      <input type="submit" value="Save Solution">
-    </form>
+    <%= render partial: 'form' %>
   </div>
   <button type="button" name="button" onClick='on_click()'>Run Code</button>
 </div>
@@ -16,14 +12,15 @@
     let myTextArea = $('.codearea')[0];
     editor = CodeMirror.fromTextArea( myTextArea, {
       value: myTextArea.value,
-      theme: 'ambiance',
+      theme: 'neat',
       lineNumbers: true,});
+      let funk;
   });
 
   const on_click = () => {
     let js = editor.getValue();
     let s = document.createElement('script');
-    s.textContent = `let funk = str => {
+    s.textContent = `funk = str => {
       ${js}
     }`;
     document.body.appendChild(s);

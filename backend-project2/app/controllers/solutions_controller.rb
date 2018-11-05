@@ -8,6 +8,7 @@ class SolutionsController < ApplicationController
     @inputs = @challenge.test_pairs.pluck(:input)
     @outputs = @challenge.test_pairs.pluck(:output)
     @solution = Solution.new
+    @solution.challenge_id = @challenge.id
   end
 
   def create
@@ -17,7 +18,8 @@ class SolutionsController < ApplicationController
   end
 
   def edit
-    @solution = Solution.first
+    @solution = Solution.first #should be Solution.find(params[:id])
+
   end
 
   def update
