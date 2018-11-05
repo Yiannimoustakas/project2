@@ -19,12 +19,24 @@ class TestPairsController < ApplicationController
   end
 
   def edit
+    @test_pair = TestPair.find params[:id]
   end
 
   def update
+    @test_pair = TestPair.find params[:id]
+    @test_pair.save
+    if @test_pair.update(test_pair_params)
+      redirect_to( test_pair_path( @test_pair.id ) )
+    else
+      flash[:errors] = @test_pair.errors.full_messages
+      render :edit
+    end
   end
 
   def destroy
+    test_pair = TestPair.find params[:id]
+    test_pair.destroy
+    redirect_to challenge_path(test_pair.challenge_id)
   end
 
   private
