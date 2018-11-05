@@ -3,14 +3,11 @@
     <h2><%= @challenge.name %></h2>
     <p><%= @challenge.description %></p>
   </div>
-  <div class="ins-n-outs">
-    <h3></h3>
-  </div>
   <div class="code-textarea">
     <%= render partial: 'form' %>
   </div>
-  <div class="errors">
-    <button type="button" name="button" onClick='on_click()'>Test Code</button>
+  <div class="results">
+    <button type="button" name="button" onClick='RunSolution()'>Run Code</button>
     <div></div>
   </div>
 </div>
@@ -26,7 +23,7 @@
       let funk;
   });
 
-  const on_click = () => {
+  const RunSolution = () => {
     let js = editor.getValue();
     let s = document.createElement('script');
     s.textContent = `funk = str => {

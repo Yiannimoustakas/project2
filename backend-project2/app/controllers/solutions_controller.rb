@@ -15,11 +15,12 @@ class SolutionsController < ApplicationController
     solution = Solution.new solution_params
     solution.user_id = User.first.id #should be 'current user'
     solution.save
+    redirect_to controller: 'solutions', action: 'show', id: solution.id
   end
 
   def edit
-    @solution = Solution.first #should be Solution.find(params[:id])
-
+    @solution = Solution.find(params[:id])
+    @challenge = Challenge.find(@solution.challenge_id)
   end
 
   def update
@@ -35,11 +36,13 @@ class SolutionsController < ApplicationController
 
   def show
     @solution = Solution.find(params[:id])
+    @challenge = Challenge.find(@solution.challenge_id)
   end
 
   def destroy
     solution = Solution.find(params[:id])
     solution.destroy()
+    redirect_to controller: 'users', action: 'show', id: @current_user.id
   end
 
   private
