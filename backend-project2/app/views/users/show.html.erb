@@ -1,4 +1,17 @@
-<h1>Create a user</h1>
-<p>User:</p>
-<p>Name:</p>
-<p>Password:</p>
+
+<h1>Your Challenges</h1>
+
+<ul class="youridea">
+    <% @user.challenges.each do |challenge| %>
+      <br>
+      <li>
+        <%= link_to challenge.name, challenge_path(challenge.id) %>
+
+         </li>
+      <% end %>
+    </ul>
+
+    </div><!-- div.col-6, right hand column -->
+
+    </div><!-- div.row -->
+</div><!-- div.jumbotron -->
