@@ -6,7 +6,7 @@
 <br>
 <br>
 <p><strong>Description:</strong> <%= @challenge.description %></p>
-<%# <p><strong>Created By:</strong> <%= @challenge.user.name %> %>
+<p><strong>Created By:</strong> <%= @challenge.user.name %>
 
 
 <br>
@@ -20,13 +20,13 @@
     </li>
   <% end %>
 </ul>
-<%# <% if @current_user.present? %>
-<%= link_to 'Add A Test Pair', new_test_pair_path %><br>
-<%# end %>
+<% if @current_user.present? %>
+  <%= link_to 'Add A Test Pair', new_test_pair_path %><br>
+<% end %>
 <br>
-<%# <% if @current_user.present? %>
-<%= link_to 'Edit Challenge', edit_challenge_path(@challenge.id) %><br>
-<%= link_to 'Delete Challenge', challenge_path(@challenge.id), method: 'delete' %><br>
-<%# end %>
+<% if @current_user.present? %>
+  <%= link_to 'Edit Challenge', edit_challenge_path(@challenge.id) %><br>
+  <%= link_to 'Delete Challenge', challenge_path(@challenge.id), method: 'delete' %><br>
+<% end %>
 
 <br>

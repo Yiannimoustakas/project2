@@ -7,10 +7,16 @@ class ChallengesController < ApplicationController
   end
 
   def create
-    Challenge.create(challenge_params)
-    @challenge = Challenge.create(challenge_params)
+    @challenge = Challenge.new(challenge_params)
     @challenge.user = @current_user
-    redirect_to challenges_path
+    @challenge.save
+
+    if @challenge.persisted?
+        redirect_to challenge_path(@challenge.id)
+    else
+      flash[:errors] = @challenge.errors.full_messages
+      render :new
+    end
   end
 
   def index
