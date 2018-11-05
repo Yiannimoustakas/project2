@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'challenges#index'
+  root 'session#new'
 
   get 'comments/show'
   get 'comments/index'
