@@ -41,7 +41,19 @@
   width: 100%;
 }
 
+.codearea{
+  height: 100%;
+  width: 100%;
+}
+
 .results{
   grid-column: 3;
   grid-row: 2;
+}
+
+.editLink{
+  display: inline-block;
+  position: absolute;
+  bottom: 0;
+  right: 0;
 }
