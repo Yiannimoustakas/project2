@@ -42,10 +42,8 @@ ActiveRecord::Schema.define(version: 2018_11_06_032440) do
   end
 
   create_table "test_pairs", force: :cascade do |t|
-    t.string "input"
-    t.string "output"
-    t.integer "input_type"
-    t.integer "output_type"
+    t.text "input"
+    t.text "output"
     t.integer "challenge_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
