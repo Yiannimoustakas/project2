@@ -15,18 +15,18 @@ class CommentsController < ApplicationController
   end
 
   def create
-    @comment = Comment.create ({body:params[:body]})
+    @comment = Comment.create({body:params[:body]})
+    # @comment = Comment.new({body:params[:body]})
     @comment.user_id = @current_user.id
-
     @comment.save
 
+    # raise 'hell'
     if @comment.persisted?
-    challenge = Challenge.find params[:idea_id].to_i
-    challenge.comments << @comment
-    challenge.save
-
-    redirect_to challenges_path(challenge)
-
+      solution = Solution.find params[:solution_id]
+      solution.comments << @comment
+      solution.save
+      redirect_to solution_path(solution)
+    end
   end
 
   private

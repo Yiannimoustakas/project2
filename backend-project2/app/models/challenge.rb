@@ -3,5 +3,4 @@ class Challenge < ApplicationRecord
   has_many :solutions
   has_many :test_pairs
   validates :name, presence: true
-  has_many :comments
 end

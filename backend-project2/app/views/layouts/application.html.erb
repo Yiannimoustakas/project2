@@ -11,27 +11,15 @@
 
 
   <body>
-<<<<<<< HEAD
-    <% if @current_user.present? %>
-    <nav>
-    <%= link_to 'Logout', login_path, method: 'delete', class: "logout"  %> |
-    <%= link_to 'Profile', users_path, class: "profile"  %> </nav>
-    <p class ="welcomeB">Welcome back, <%= @current_user %> </p>
-    <hr>
-    <% else %>
-    <%= link_to 'Signup', new_user_path, class: "signup" %> |
-    <%= link_to 'Login', login_path, class: "signup" %>
 
-    <% end %>
-    <%= yield %>
-=======
     <header>
       <% if @current_user.present? %>
       <nav>
       <%= link_to 'Logout', login_path, method: 'delete', class: "logout"  %>
       <%= link_to 'Profile', user_path(@current_user.id) , class: "profile"  %> </nav>
-      <p class ="welcomeB">Welcome back, <%= @current_user %> </p>
-      <hr>
+      <div class = "welcome">
+        &nbsp;&nbsp;&nbsp;Welcome back, <%= @current_user.name %>
+      </div>
       <% else %>
       <%= link_to 'Signup', new_user_path, class: "signup" %>
       <% end %>
@@ -39,7 +27,6 @@
     <main>
       <%= yield %>
     </main>
->>>>>>> cec08f7ee46ee158b82e8b96c3968ea7635ec69a
 
   </body>
 </html>

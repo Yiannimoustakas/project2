@@ -3,3 +3,24 @@
   <textarea name="code" class="codearea" id="editor"><%= @solution.code %></textarea>
   <input type="submit" class="submit-button" value="Save Solution">
 </form>
+
+
+
+<% @challenge.comments.each do |comment| %>
+
+  <div class="comment">
+  <h6><%= comment.user.name %>
+  says:</h6>
+  <%= simple_format(comment.body) %>
+
+  </div>
+    <% end %>
+
+
+<%= form_tag comments_path do  %>
+    leave a <%= label_tag :Comment %>: <br>
+      <%= text_area_tag :body %> <br>
+    <%= hidden_field_tag :challenge_id,"#{@challenge.id}" %>
+    <br>
+    <%= submit_tag "Post comment"%>
+    <% end  %>

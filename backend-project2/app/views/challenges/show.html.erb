@@ -40,36 +40,3 @@
 <% end %>
 
 <br>
-
-<<<<<<< HEAD
-<h3>Comments:</h3>
-<br>
-
-<% @challenge.comments.each do |comment| %>
-
-  <div class="comment">
-  <h6><%= comment.user.name %>
-  says:</h6>
-  <%= simple_format(comment.body) %>
-
-  </div>
-    <% end %>
-
-
-<%= form_tag comments_path do  %>
-    leave a <%= label_tag :Comment %>: <br>
-      <%= text_area_tag :body %> <br>
-    <%= hidden_field_tag :challenge_id,"#{@challenge.id}" %>
-    <br>
-    <%= submit_tag "Post comment"%>
-    <% end  %>
-=======
-<ul>
-  <% @challenge.solutions.each do |solution| %>
-    <li>
-      <%# <strong>User</strong> <%= solution.user.name %>
-      <strong>Solution</strong> <%= solution.code %>
-    </li>
-  <% end %>
-</ul>
->>>>>>> cec08f7ee46ee158b82e8b96c3968ea7635ec69a

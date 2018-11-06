@@ -6,7 +6,7 @@ class SessionController < ApplicationController
 
       session[:user_id] = user.id
 
-      redirect_to users_path
+      redirect_to user_path(user.id)
 
     else
  # Bad credentials, i.e unsuccessful login
