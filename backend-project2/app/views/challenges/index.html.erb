@@ -10,3 +10,5 @@
     </li>
   <% end %>
 </ul>
+
+<%= link_to "Random Challenge Generator", challenge_path("#{Challenge.all.ids.sample}") %>

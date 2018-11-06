@@ -46,7 +46,7 @@
   <ul>
     <% @challenge.solutions.each do |solution| %>
       <li>
-        <%# <strong>User</strong> <%= solution.user.name %>
+        <strong>User</strong> <%= solution.user.name %><br>
         <strong>Solution</strong> <%= solution.code %>
       </li>
     <% end %>

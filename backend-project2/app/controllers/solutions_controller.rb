@@ -12,7 +12,7 @@ class SolutionsController < ApplicationController
     @outputs = @challenge.test_pairs.pluck(:output)
     @solution = Solution.new
     @solution.challenge_id = @challenge.id
-    @solution.save
+    # @solution.save
   end
 
   def create
