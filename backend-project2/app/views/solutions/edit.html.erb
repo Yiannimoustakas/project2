@@ -1,9 +1,16 @@
-
 <div class="grid-Container">
+  <div class="challenge-info">
+    <h2><a href="/challenges/<%= @challenge.id %>"><%= @challenge.name %></a> </h2>
+    <p><%= @challenge.description %></p>
+  </div>
   <div class="code-textarea">
     <%= render partial: 'form' %>
+    <a href="/solutions/<%= @solution.id %>" method="delete">Delete This Solution</a>
   </div>
-  <button type="button" name="button" onClick='on_click()'>Run Code</button>
+  <div class="results">
+    <button type="button" name="button" onClick='on_click()'>Run Code</button>
+    <div></div>
+  </div>
 </div>
 
 <script>
@@ -20,7 +27,7 @@
   const on_click = () => {
     let js = editor.getValue();
     let s = document.createElement('script');
-    s.textContent = `funk = str => {
+    s.textContent = `funk = arr => {
       ${js}
     }`;
     document.body.appendChild(s);

@@ -1,15 +1,38 @@
 <div class="grid-Container">
   <div class="challenge-info">
-
-  </div>
-  <div class="ins-n-outs">
-
+    <h2><a href="/challenges/<%= @challenge.id %>"><%= @challenge.name %></a> </h2>
+    <p><%= @challenge.description %></p>
   </div>
   <div class="code-textarea">
-    <%= render partial: 'form' %>
+    <textarea name="code" class="codearea" id="editor"><%= @solution.code %></textarea>
   </div>
-  <div class="errors">
-
+  <div class="results">
+    <button type="button" name="button" onClick='on_click()'>Run Code</button>
+    <div></div>
   </div>
-  <button type="button" name="button" onClick='on_click()'>Run Code</button>
 </div>
+
+<script>
+  let editor;
+  $(document).ready(function(){
+    let myTextArea = $('.codearea')[0];
+    editor = CodeMirror.fromTextArea( myTextArea, {
+      value: myTextArea.value,
+      theme: 'neat',
+      lineNumbers: true,
+      readOnly: true,});
+      let funk;
+  });
+
+  const on_click = () => {
+    let js = editor.getValue();
+    let s = document.createElement('script');
+    s.textContent = `funk = arr => {
+      ${js}
+    }`;
+    document.body.appendChild(s);
+    funk("hello world");
+    s.remove()
+  }
+
+</script>
