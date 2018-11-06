@@ -2,12 +2,13 @@ class TestPairsController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   def new
-    @test_pairs = TestPair.new
+    @test_pair = TestPair.new
   end
 
   def create
-    TestPair.create(test_pair_params)
-    redirect_to test_pairs_path
+    @test_pair = TestPair.new(test_pair_params)
+    @test_pair.save
+    redirect_to challenge_path(@test_pair.challenge_id), notice: 'Test Pair was successfully created'
   end
 
   def index
@@ -18,16 +19,28 @@ class TestPairsController < ApplicationController
   end
 
   def edit
+    @test_pair = TestPair.find params[:id]
   end
 
   def update
+    @test_pair = TestPair.find params[:id]
+    @test_pair.save
+    if @test_pair.update(test_pair_params)
+      redirect_to( test_pair_path( @test_pair.id ) )
+    else
+      flash[:errors] = @test_pair.errors.full_messages
+      render :edit
+    end
   end
 
   def destroy
+    test_pair = TestPair.find params[:id]
+    test_pair.destroy
+    redirect_to challenge_path(test_pair.challenge_id)
   end
 
   private
-  def challenge_params
-    params.require(:).permit()
+  def test_pair_params
+    params.require(:test_pair).permit(:input, :output, :challenge_id)
   end
 end

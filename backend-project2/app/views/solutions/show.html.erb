@@ -1,2 +1,38 @@
-<h1>Solutions#show</h1>
-<p>Find me in app/views/solutions/show.html.erb</p>
+<div class="grid-Container">
+  <div class="challenge-info">
+    <h2><%= @challenge.name %></h2>
+    <p><%= @challenge.description %></p>
+  </div>
+  <div class="code-textarea">
+    <textarea name="code" class="codearea" id="editor"><%= @solution.code %></textarea>
+  </div>
+  <div class="results">
+    <button type="button" name="button" onClick='on_click()'>Run Code</button>
+    <div></div>
+  </div>
+</div>
+
+<script>
+  let editor;
+  $(document).ready(function(){
+    let myTextArea = $('.codearea')[0];
+    editor = CodeMirror.fromTextArea( myTextArea, {
+      value: myTextArea.value,
+      theme: 'neat',
+      lineNumbers: true,
+      readOnly: true,});
+      let funk;
+  });
+
+  const on_click = () => {
+    let js = editor.getValue();
+    let s = document.createElement('script');
+    s.textContent = `funk = arr => {
+      ${js}
+    }`;
+    document.body.appendChild(s);
+    funk("hello world");
+    s.remove()
+  }
+
+</script>

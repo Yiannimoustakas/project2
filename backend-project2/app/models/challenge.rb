@@ -1,6 +1,7 @@
 class Challenge < ApplicationRecord
-  belongs_to :user
+  belongs_to :user, optional: true
   has_many :solutions
   has_many :test_pairs
-  has_many :comments 
+  validates :name, presence: true
+  has_many :comments
 end

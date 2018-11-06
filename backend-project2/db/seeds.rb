@@ -18,7 +18,7 @@ puts "Created #{User.all.length} users."
 
 Challenge.destroy_all
 
-c1 = Challenge.create name: 'Square number', description: "Return the square of the given input", user_id: u1.id
+c1 = Challenge.create name: 'Square number', description: "Return the square of the given inputs", user_id: u1.id
 
 puts "Created #{Challenge.all.length} Challenges."
 
