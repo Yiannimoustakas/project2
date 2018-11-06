@@ -41,11 +41,14 @@
 
 <br>
 
-<ul>
-  <% @challenge.solutions.each do |solution| %>
-    <li>
-      <%# <strong>User</strong> <%= solution.user.name %>
-      <strong>Solution</strong> <%= solution.code %>
-    </li>
-  <% end %>
-</ul>
+<button class="showSolutionButton">Click Here To Show Solutions</button>
+<div class="hiddenSolutions">
+  <ul>
+    <% @challenge.solutions.each do |solution| %>
+      <li>
+        <%# <strong>User</strong> <%= solution.user.name %>
+        <strong>Solution</strong> <%= solution.code %>
+      </li>
+    <% end %>
+  </ul>
+</div>
