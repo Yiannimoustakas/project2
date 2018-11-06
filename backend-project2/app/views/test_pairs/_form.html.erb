@@ -18,7 +18,10 @@
   <%= f.label :output %>
   <%= f.text_field :output, class: "form-control" %>
   <br>
-  <%= f.label :test_pair_type %>
+  <%= f.label :input_type %>
+  <%= f.select :test_pair_type, ["integer", "string", "array"], class: "form-control" %>
+  <br>
+  <%= f.label :output_type %>
   <%= f.select :test_pair_type, ["integer", "string", "array"], class: "form-control" %>
   <br>
   <%= f.label :challenge_id %>
