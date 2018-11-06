@@ -16,3 +16,40 @@
 //= require codemirror
 //= require jquery
 //= require codemirror/modes/javascript
+
+
+
+const RunSolution = () => {
+  let js = editor.getValue();
+  let s = document.createElement('script');
+  s.textContent = `funk = val => {
+    ${js}
+  }`;
+  document.body.appendChild(s);
+  let correctAnswers = 0;
+  let failedInputs = [];
+  let totalTests = data.inputs.length;
+  try {
+    for (var i = 0; i < data.inputs.length; i++) {
+      output = funk(data.inputs[i]);
+      if (output.toString() === data.outputs[i]){
+        correctAnswers ++;
+      }else{
+        failedInputs.push(`Input value ${data.inputs[i]} generated the incorrect answer: ${output}`);
+      }
+    }
+    score = Math.round((correctAnswers/data.inputs.length) * 100);
+    message = `${correctAnswers} out of ${data.inputs.length} correct. ${score}%`
+  }catch (error){
+    line = error.stack.split(':')[2];
+    line = parseInt(line)-1;
+    message = `${error.message}. Best guess: line ${line}`;
+  }
+  $('.results div').empty();
+  $('.results div').text(message);
+  $('.results div').append($('<ul>'))
+  for (var i = 0; i < failedInputs.length; i++) {
+    $('.results div').append($(`<li>${failedInputs[i]}</li>`))
+  }
+  s.remove()
+}

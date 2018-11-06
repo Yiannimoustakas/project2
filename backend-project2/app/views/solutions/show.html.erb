@@ -5,34 +5,29 @@
   </div>
   <div class="code-textarea">
     <textarea name="code" class="codearea" id="editor"><%= @solution.code %></textarea>
+    <% if @solution.user_id == @current_user.id %>
+      <a href="/solutions/<%= @solution.id %>/edit" class=editLink>Edit Solution</a>
+    <% end %>
   </div>
   <div class="results">
-    <button type="button" name="button" onClick='on_click()'>Run Code</button>
+    <button type="button" name="button" onClick='RunSolution()'>Run Code</button>
     <div></div>
   </div>
 </div>
 
 <script>
   let editor;
+  let data;
+  let errors;
+  let score;
   $(document).ready(function(){
     let myTextArea = $('.codearea')[0];
     editor = CodeMirror.fromTextArea( myTextArea, {
       value: myTextArea.value,
       theme: 'neat',
-      lineNumbers: true,
-      readOnly: true,});
-      let funk;
+      lineNumbers: true,});
+    let funk;
+    data = (<%= @data %>);
+    console.log(data);
   });
-
-  const on_click = () => {
-    let js = editor.getValue();
-    let s = document.createElement('script');
-    s.textContent = `funk = arr => {
-      ${js}
-    }`;
-    document.body.appendChild(s);
-    funk("hello world");
-    s.remove()
-  }
-
 </script>

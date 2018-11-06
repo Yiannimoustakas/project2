@@ -7,12 +7,9 @@ class SolutionsController < ApplicationController
     # @challenge = Challenge.first Hard Code.
     # This is the params passed form the link_to on challenge show page
     @challenge = Challenge.find params[:id]
-    # raise "hell"
-    @inputs = @challenge.test_pairs.pluck(:input)
-    @outputs = @challenge.test_pairs.pluck(:output)
+    @data = getData(@challenge).to_json.html_safe
     @solution = Solution.new
     @solution.challenge_id = @challenge.id
-    # @solution.save
   end
 
   def create
@@ -27,9 +24,11 @@ class SolutionsController < ApplicationController
   def edit
     @solution = Solution.find(params[:id])
     @challenge = Challenge.find(@solution.challenge_id)
+    @data = getData(@challenge).to_json.html_safe
   end
 
   def update
+    raise 'hell'
     solution = Solution.find(params[:id])
     solution.update(
       solution_params
@@ -43,6 +42,7 @@ class SolutionsController < ApplicationController
   def show
     @solution = Solution.find(params[:id])
     @challenge = Challenge.find(@solution.challenge_id)
+    @data = getData(@challenge).to_json.html_safe
   end
 
   def destroy
@@ -55,5 +55,11 @@ class SolutionsController < ApplicationController
 
   def solution_params
     params.permit(:code, :challenge_id)
+  end
+
+  def getData(challenge)
+    inputs = challenge.test_pairs.pluck(:input)
+    outputs = challenge.test_pairs.pluck(:output)
+    data = {inputs: inputs,outputs: outputs}
   end
 end

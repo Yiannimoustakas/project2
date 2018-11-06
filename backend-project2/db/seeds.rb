@@ -35,6 +35,6 @@ puts "Created #{TestPair.all.length} TestPairs."
 
 Solution.destroy_all
 
-s1 = Solution.create code: "return (x * x);", challenge_id: c1.id, user_id: u2.id
+s1 = Solution.create code: "return (x * x);", challenge_id: c1.id, user_id: u1.id
 
 puts "Created #{Solution.all.length} Solutions."
