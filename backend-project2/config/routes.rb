@@ -1,12 +1,7 @@
 Rails.application.routes.draw do
   root 'session#new'
 
-  get 'comments/show'
-  get 'comments/index'
-  get 'comments/update'
-  get 'comments/edit'
-  get 'comments/new'
-  get 'comments/create'
+
   get 'session/new'
 
   get 'session/create'
@@ -20,4 +15,5 @@ Rails.application.routes.draw do
   resources :test_pairs
   resources :solutions
   resources :users
+  resources :comments 
 end

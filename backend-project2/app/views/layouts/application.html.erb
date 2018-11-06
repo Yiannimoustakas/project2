@@ -15,12 +15,11 @@
     <header>
       <% if @current_user.present? %>
       <nav>
-        <span class ="welcomeB">Welcome back, <%= @current_user.name %> </span>
-        <%= link_to 'Profile', user_path(@current_user), class: "profile"  %>
-        <%= link_to 'Challenges', challenges_path, class: "challenges"  %>
-        <%= link_to 'Logout', login_path, method: 'delete', class: "logout"  %>
-      </nav>
-      <hr>
+      <%= link_to 'Logout', login_path, method: 'delete', class: "logout"  %>
+      <%= link_to 'Profile', user_path(@current_user.id) , class: "profile"  %> </nav>
+      <div class = "welcome">
+        &nbsp;&nbsp;&nbsp;Welcome back, <%= @current_user.name %>
+      </div>
       <% else %>
       <nav>
         <%= link_to 'Signup', new_user_path, class: "signup" %>

@@ -51,5 +51,10 @@ const RunSolution = () => {
   for (var i = 0; i < failedInputs.length; i++) {
     $('.results div').append($(`<li>${failedInputs[i]}</li>`))
   }
+  $('#scorefield').val(score);
   s.remove()
+}
+
+const testing = () => {
+  console.log("heeeelp");
 }

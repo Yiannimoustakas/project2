@@ -14,9 +14,7 @@ class SolutionsController < ApplicationController
 
   def create
     solution = Solution.new solution_params
-    # @challenge = Challenge.find params[:id]
-    solution.user_id = User.first.id #should be 'current user'
-    solution.challenge_id = params[:challenge_id]
+    solution.user_id = @current_user.id #should be 'current user'
     solution.save
     redirect_to controller: 'solutions', action: 'show', id: solution.id
   end
@@ -28,11 +26,11 @@ class SolutionsController < ApplicationController
   end
 
   def update
-    raise 'hell'
     solution = Solution.find(params[:id])
     solution.update(
       solution_params
     )
+    redirect_to solution_path params[:id]
   end
 
   def index
@@ -54,7 +52,7 @@ class SolutionsController < ApplicationController
   private
 
   def solution_params
-    params.permit(:code, :challenge_id)
+    params.require(:solution).permit(:code, :challenge_id)
   end
 
   def getData(challenge)
