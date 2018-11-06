@@ -11,20 +11,28 @@
 
 
   <body>
+
     <header>
       <% if @current_user.present? %>
       <nav>
-      <%= link_to 'Logout', login_path, method: 'delete', class: "logout"  %>
-      <%= link_to 'Profile', user_path(@current_user.id) , class: "profile"  %> </nav>
-      <p class ="welcomeB">Welcome back, <%= @current_user %> </p>
+        <%= link_to 'Profile', users_path, class: "profile"  %>
+        <%= link_to 'Challenges', challenges_path, class: "challenges"  %>
+        <%= link_to 'Logout', login_path, method: 'delete', class: "logout"  %>
+      </nav>
+      <p class ="welcomeB">Welcome back, <%= @current_user.name %> </p>
       <hr>
       <% else %>
-      <%= link_to 'Signup', new_user_path, class: "signup" %>
+      <nav>
+        <%= link_to 'Signup', new_user_path, class: "signup" %>
+        <%= link_to 'Login', login_path, class: "login" %>
+      </nav>
       <% end %>
     </header>
+
     <main>
       <%= yield %>
     </main>
+
 
   </body>
 </html>
