@@ -29,7 +29,7 @@
       <% if @current_user.present? %>
       <nav>
       <%= link_to 'Logout', login_path, method: 'delete', class: "logout"  %>
-      <%= link_to 'Profile', users_path, class: "profile"  %> </nav>
+      <%= link_to 'Profile', user_path(@current_user.id) , class: "profile"  %> </nav>
       <p class ="welcomeB">Welcome back, <%= @current_user %> </p>
       <hr>
       <% else %>
