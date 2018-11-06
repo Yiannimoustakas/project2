@@ -25,7 +25,7 @@ puts "Created #{Challenge.all.length} Challenges."
 TestPair.destroy_all
 
 tp1 = TestPair.create input: 1, output: 1, input_type: 0, output_type: 0, challenge_id: c1.id
-tp2 = TestPair.create input: 2, output: 4, input_type: 0, output_type: 0, challenge_id: c1.idinput
+tp2 = TestPair.create input: 2, output: 4, input_type: 0, output_type: 0, challenge_id: c1.id
 tp3 = TestPair.create input: 3, output: 9, input_type: 0, output_type: 0, challenge_id: c1.id
 tp4 = TestPair.create input: 4, output: 16, input_type: 0, output_type: 0, challenge_id: c1.id
 tp5 = TestPair.create input: 5, output: 25, input_type: 0, output_type: 0, challenge_id: c1.id
