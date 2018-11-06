@@ -26,7 +26,7 @@ class TestPairsController < ApplicationController
     @test_pair = TestPair.find params[:id]
     @test_pair.save
     if @test_pair.update(test_pair_params)
-      redirect_to( test_pair_path( @test_pair.id ) )
+      redirect_to( challenge_path( @test_pair.challenge_id ) )
     else
       flash[:errors] = @test_pair.errors.full_messages
       render :edit
@@ -41,6 +41,6 @@ class TestPairsController < ApplicationController
 
   private
   def test_pair_params
-    params.require(:test_pair).permit(:input, :output, :challenge_id)
+    params.require(:test_pair).permit(:input, :output, :test_pair_type, :challenge_id)
   end
 end

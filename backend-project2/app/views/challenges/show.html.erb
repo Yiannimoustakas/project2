@@ -40,3 +40,18 @@
 <% end %>
 
 <br>
+<<<<<<< HEAD
+=======
+
+<button class="showSolutionButton">Click Here To Show Solutions</button>
+<div class="hiddenSolutions">
+  <ul>
+    <% @challenge.solutions.each do |solution| %>
+      <li>
+        <strong>User</strong> <%= solution.user.name %><br>
+        <strong>Solution</strong> <%= solution.code %>
+      </li>
+    <% end %>
+  </ul>
+</div>
+>>>>>>> 88cae18561cf298684814b60b3e438fe3349976b

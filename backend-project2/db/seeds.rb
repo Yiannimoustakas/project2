@@ -24,17 +24,17 @@ puts "Created #{Challenge.all.length} Challenges."
 
 TestPair.destroy_all
 
-tp1 = TestPair.create input: 1, output: 1, challenge_id: c1.id
-tp2 = TestPair.create input: 2, output: 4, challenge_id: c1.id
-tp3 = TestPair.create input: 3, output: 9, challenge_id: c1.id
-tp4 = TestPair.create input: 4, output: 16, challenge_id: c1.id
-tp5 = TestPair.create input: 5, output: 25, challenge_id: c1.id
-tp6 = TestPair.create input: 6, output: 36, challenge_id: c1.id
+tp1 = TestPair.create input: 1, output: 1, test_pair_type: 0, challenge_id: c1.id
+tp2 = TestPair.create input: 2, output: 4, test_pair_type: 0, challenge_id: c1.id
+tp3 = TestPair.create input: 3, output: 9, test_pair_type: 0, challenge_id: c1.id
+tp4 = TestPair.create input: 4, output: 16, test_pair_type: 0, challenge_id: c1.id
+tp5 = TestPair.create input: 5, output: 25, test_pair_type: 0, challenge_id: c1.id
+tp6 = TestPair.create input: 6, output: 36, test_pair_type: 0, challenge_id: c1.id
 
 puts "Created #{TestPair.all.length} TestPairs."
 
 Solution.destroy_all
 
-s1 = Solution.create code: "return (x * x);", challenge_id: c1.id, user_id: u2.id
+s1 = Solution.create code: "return (x * x);", challenge_id: c1.id, user_id: u1.id
 
 puts "Created #{Solution.all.length} Solutions."

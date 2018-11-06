@@ -7,19 +7,14 @@ class SolutionsController < ApplicationController
     # @challenge = Challenge.first Hard Code.
     # This is the params passed form the link_to on challenge show page
     @challenge = Challenge.find params[:id]
-    # raise "hell"
-    @inputs = @challenge.test_pairs.pluck(:input)
-    @outputs = @challenge.test_pairs.pluck(:output)
+    @data = getData(@challenge).to_json.html_safe
     @solution = Solution.new
     @solution.challenge_id = @challenge.id
-    @solution.save
   end
 
   def create
     solution = Solution.new solution_params
-    # @challenge = Challenge.find params[:id]
-    solution.user_id = User.first.id #should be 'current user'
-    solution.challenge_id = params[:challenge_id]
+    solution.user_id = @current_user.id #should be 'current user'
     solution.save
     redirect_to controller: 'solutions', action: 'show', id: solution.id
   end
@@ -27,6 +22,7 @@ class SolutionsController < ApplicationController
   def edit
     @solution = Solution.find(params[:id])
     @challenge = Challenge.find(@solution.challenge_id)
+    @data = getData(@challenge).to_json.html_safe
   end
 
   def update
@@ -34,6 +30,7 @@ class SolutionsController < ApplicationController
     solution.update(
       solution_params
     )
+    redirect_to solution_path params[:id]
   end
 
   def index
@@ -43,6 +40,7 @@ class SolutionsController < ApplicationController
   def show
     @solution = Solution.find(params[:id])
     @challenge = Challenge.find(@solution.challenge_id)
+    @data = getData(@challenge).to_json.html_safe
   end
 
   def destroy
@@ -54,6 +52,12 @@ class SolutionsController < ApplicationController
   private
 
   def solution_params
-    params.permit(:code, :challenge_id)
+    params.require(:solution).permit(:code, :challenge_id)
+  end
+
+  def getData(challenge)
+    inputs = challenge.test_pairs.pluck(:input)
+    outputs = challenge.test_pairs.pluck(:output)
+    data = {inputs: inputs,outputs: outputs}
   end
 end

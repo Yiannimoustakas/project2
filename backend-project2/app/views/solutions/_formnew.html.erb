@@ -1,0 +1,6 @@
+<%= form_for @solution, :html => {class: 'code-form'} do |f| %>
+  <%= f.hidden_field :score, {value: 0, id: "scorefield" }%>
+  <%= f.hidden_field :challenge_id, value: @solution.challenge_id %>
+  <%= f.text_area :code, {class: 'codearea', id: 'editor'}%>
+  <%= f.submit 'Save Solution', class: 'submit-button' %>
+<% end %>
