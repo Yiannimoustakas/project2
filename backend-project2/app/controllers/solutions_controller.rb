@@ -61,8 +61,28 @@ class SolutionsController < ApplicationController
   end
 
   def getData(challenge)
-    inputs = challenge.test_pairs.pluck(:input)
-    outputs = challenge.test_pairs.pluck(:output)
-    data = {inputs: inputs,outputs: outputs}
+    data = challenge.test_pairs
+    inputs = []
+    outputs = []
+    data.each{ |pair|
+      if pair.integer_input_type? # if the input is meant to be a number, convert it to a float.
+        input = pair.input.to_f;
+      elsif pair.string_input_type? # if its meant to be a string, leave it as it is.
+        input = pair.input;
+      else                        # else it's meant to be an array, so split it on a pipe.
+        input = pair.input.split('|');
+      end
+      inputs.push(input);
+
+      if pair.output_integer? # if the input is meant to be a number, convert it to a float.
+        output = pair.output.to_f;
+      elsif pair.output_string? # if its meant to be a string, leave it as it is.
+        output = pair.output;
+      else                        # else it's meant to be an array, so split it on a pipe.
+        output = pair.output.split('|');
+      end
+      outputs.push(output);
+    };
+    data = {inputs: inputs , outputs: outputs}
   end
 end
