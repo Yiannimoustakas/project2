@@ -1,0 +1,39 @@
+<div class="grid-Container">
+  <div class="challenge-info">
+    <h2><a href="/challenges/<%= @challenge.id %>"><%= @challenge.name %></a> </h2>
+    <p><%= @challenge.description %></p>
+  </div>
+  <div class="code-textarea">
+    let funk = function(input){
+    <%= render partial: 'formnew' %>
+    return output;
+    <a href="/solutions/<%= @solution.id %>" method="delete">Delete This Solution</a>
+  </div>
+  <div class="results">
+    <button type="button" name="button" onClick='RunSolution()'>Run Code</button>
+    <div></div>
+  </div>
+</div>
+
+<script>
+  let editor;
+  let data;
+  let errors;
+  let score;
+  $(document).ready(function(){
+    let myTextArea = $('.codearea')[0];
+    editor = CodeMirror.fromTextArea( myTextArea, {
+      value: myTextArea.value,
+      theme: 'neat',
+      lineNumbers: true,});
+    let funk;
+    data = (<%= @data %>);
+    console.log(data);
+    $formSubmit = $('.code-form')
+    $formSubmit.submit( () => {
+      RunSolution();
+      $('.code-form').append(`<input type='hidden' name='score' value=${score}/>`)
+    })
+  });
+
+</script>
