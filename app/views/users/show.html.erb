@@ -1,4 +1,3 @@
-<hr>
 <div class ="wrapper">
 
   <div class ="left-Col">
@@ -6,11 +5,20 @@
       <p><%= link_to 'Start new challenge', challenges_path	 %></p>
       <hr>
 
+
+
       <ul class="yoursolutions">
       <% @user.solutions.each do |solution| %>
         <br>
         <li>
-          <%= link_to "#{solution.challenge.name}", solution_path(solution.id) %>
+          <%= link_to "#{solution.challenge.name}", solution_path(solution.id) %> Created
+
+          <%= time_ago_in_words(solution.created_at) %>
+
+
+
+          <%# <%=  solution.created_at %>
+
 
            </li>
         <% end %>
@@ -31,7 +39,10 @@
         <% @user.challenges.each do |challenge| %>
           <br>
           <li>
-            <%= link_to challenge.name, challenge_path(challenge.id) %>
+            <%= link_to challenge.name, challenge_path(challenge.id) %> created
+            <%= time_ago_in_words(challenge.created_at) %>
+            <%# <%= challenge.created_at %>
+
 
              </li>
           <% end %>

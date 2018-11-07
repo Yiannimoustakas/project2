@@ -24,10 +24,20 @@ class UsersController < ApplicationController
   end
 
   def edit
-  end
+      @comment = Comment.find params[:id]
+      unless @comment.user == @current_user  #check if user id associated with comment, is the same as the currnet user
+        flash[:error] = "You must be the owner of this comment to edit."
+        redirect_to conflict_path(@comment.conflict_id)
+      end
 
-  def update
-  end
+    end
+
+    def update
+      @comment = Comment.find params[:id]  #find comment
+      @comment.update comment:params[:comment][:comment ]  #actual comment is a hash within a hash
+      redirect_to conflict_path(@comment.conflict_id)
+
+    end
 
   def destroy
   end

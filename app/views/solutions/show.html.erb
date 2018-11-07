@@ -39,9 +39,20 @@
 <% @solution.comments.each do |comment| %>
 
   <div class="comment">
-  <h6><%= comment.user.name %>
-  says:</h6>
+
+    <h6><%= comment.user.name %>       says:
+ <br>
+
+
+  created <%= time_ago_in_words(comment.created_at) %> ago
+
+
   <%= simple_format(comment.body) %>
+
+     <h5 class ="comment"><%= link_to 'edit comement', edit_comment_path(comment.id) %> </h5>
+
+     <h5 class="comment"><%= link_to 'Delete comement', comment_path(comment.id), method: 'delete' %> </h5>
+
 
   </div>
     <% end %>
@@ -53,4 +64,5 @@
     <%= hidden_field_tag :solution_id,"#{@solution.id}" %>
     <br>
     <%= submit_tag "Post comment"%>
+
     <% end  %>
