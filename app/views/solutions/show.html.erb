@@ -1,0 +1,56 @@
+<div class="grid-Container">
+  <div class="challenge-info">
+    <h2><a href="/challenges/<%= @challenge.id %>"><%= @challenge.name %></a> </h2>
+    <p><%= @challenge.description %></p>
+    <p><%= link_to "Start Another Challenge", challenge_path("#{Challenge.all.ids.sample}") %></p>
+  </div>
+  <div class="code-textarea">
+    let funk = function(input){
+    <textarea name="code" class="codearea" id="editor"><%= @solution.code %></textarea>
+    return output;
+    <% if @solution.user_id == @current_user.id %>
+      <a href="/solutions/<%= @solution.id %>/edit" class=editLink>Edit Solution</a>
+    <% end %>
+  </div>
+  <div class="results">
+    <button type="button" name="button" onClick='RunSolution()'>Run Code</button>
+    <div></div>
+  </div>
+</div>
+
+<script>
+  let editor;
+  let data;
+  let errors;
+  let score;
+  $(document).ready(function(){
+    let myTextArea = $('.codearea')[0];
+    editor = CodeMirror.fromTextArea( myTextArea, {
+      value: myTextArea.value,
+      theme: 'neat',
+      lineNumbers: true,});
+    let funk;
+    data = (<%= @data %>);
+    console.log(data);
+  });
+</script>
+
+
+<% @solution.comments.each do |comment| %>
+
+  <div class="comment">
+  <h6><%= comment.user.name %>
+  says:</h6>
+  <%= simple_format(comment.body) %>
+
+  </div>
+    <% end %>
+
+
+<%= form_tag comments_path do  %>
+    leave a <%= label_tag :Comment %>: <br>
+      <%= text_area_tag :body %> <br>
+    <%= hidden_field_tag :solution_id,"#{@solution.id}" %>
+    <br>
+    <%= submit_tag "Post comment"%>
+    <% end  %>

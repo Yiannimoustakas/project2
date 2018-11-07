@@ -1,0 +1,58 @@
+// Place all the styles related to the users controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.CreateAcc{
+  text-align: center;
+}
+
+.welcomeB {
+  display: inline;
+  text-align: left;
+  color: black;
+}
+
+nav {
+  text-align: right;
+  width: 95%;
+  position: fixed;
+  color: black;
+}
+
+
+.completeChall {
+  display: inline;
+}
+
+.yourChall {
+  display: inline;
+  margin-right: 20%
+}
+
+.wrapper {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 10px;
+  grid-auto-rows: 100px 300px;
+  margin-left: 10%;
+  margin-top: 50px;
+
+}
+
+.SolutionComp {
+  display: inline;
+}
+
+.hr {
+  margin-right: 20px;
+}
+
+
+.vertical-l {
+  width: 1px;
+  height: 800px  ;
+  background-color: black;
+  margin-left: 50%
+}
+
+.right-Col {
+}

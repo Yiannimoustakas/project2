@@ -1,0 +1,42 @@
+<hr>
+<div class ="wrapper">
+
+  <div class ="left-Col">
+      <h1 class="SolutionComp">Solutions to completed challenges</h1>
+      <p><%= link_to 'Start new challenge', challenges_path	 %></p>
+      <hr>
+
+      <ul class="yoursolutions">
+      <% @user.solutions.each do |solution| %>
+        <br>
+        <li>
+          <%= link_to "#{solution.challenge.name}", solution_path(solution.id) %>
+
+           </li>
+        <% end %>
+      </ul>
+  </div>
+
+  <div class="vertical-l"></div>
+
+
+
+  <div class="right-Col">
+      <h1>Your challenges</h1>
+      <p class="newChall"><%= link_to 'Create new challenge', new_challenge_path %></p>
+      <hr class="hr">
+
+
+      <ul class="youridea">
+        <% @user.challenges.each do |challenge| %>
+          <br>
+          <li>
+            <%= link_to challenge.name, challenge_path(challenge.id) %>
+
+             </li>
+          <% end %>
+        </ul>
+
+
+    </div>
+</div>
