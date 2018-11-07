@@ -4,10 +4,13 @@ class ChallengesController < ApplicationController
 
   def new
     @challenge = Challenge.new
+    @challenge.user_id = @current_user.id
   end
 
   def create
-    Challenge.create(challenge_params)
+    challenge = Challenge.create(challenge_params)
+    challenge.user_id = @current_user.id
+    challenge.save
     redirect_to challenges_path
   end
 

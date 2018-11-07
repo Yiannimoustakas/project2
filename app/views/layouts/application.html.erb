@@ -14,21 +14,24 @@
 
     <header>
       <% if @current_user.present? %>
-      <nav>
+      <nav class="navContainer">
         <div class = "welcome">
           Welcome back, <%= @current_user.name %>
         </div>
-        <div class="navLink">
-          <%= link_to 'Logout', login_path, method: 'delete', class: "navLink logout"  %>
-          <%= link_to 'Profile', user_path(@current_user.id) , class: "navLink profile"  %>
+        <div class="navLinkIn">
           <%= link_to 'Challenges', challenges_path , class: "navLink challenges"  %>
+
+          <%= link_to 'Profile', user_path(@current_user.id) , class: "navLink profile"  %>
+          <%= link_to 'Logout', login_path, method: 'delete', class: "navLink logout"  %>
         </div>
       </nav>
       <% else %>
-      <nav>
-        <%= link_to 'Challenges', challenges_path , class: "navLink profile"  %>
-        <%= link_to 'Signup', new_user_path, class: "navLink signup" %>
-        <%= link_to 'Login', login_path, class: "navLink login" %>
+      <nav class="navContainer">
+        <div class="navLinkOut">
+          <%= link_to 'Challenges', challenges_path , class: "navLink profile"  %>
+          <%= link_to 'Signup', new_user_path, class: "navLink signup" %>
+          <%= link_to 'Login', login_path, class: "navLink login" %>
+        </div>
       </nav>
       <% end %>
     </header>

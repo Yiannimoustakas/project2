@@ -9,8 +9,10 @@
 
 $(document).ready(function() {
   $('.showSolutionButton').click(function(event){
-    // console.log('You clicked the Hide link');
-    // event.preventDefault();
     $(".hiddenSolutions").toggleClass("show");
+    if ($(".showSolutionButton").html() === "Click Here To Show Solutions")
+      $(".showSolutionButton").html("Quick Teacher's Coming. Hide!");
+    else
+      $(".showSolutionButton").html("Click Here To Show Solutions");
   });
 })
