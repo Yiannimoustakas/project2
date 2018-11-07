@@ -1,40 +1,42 @@
+<hr>
+<div class ="wrapper">
 
-<h1>Your Challenges</h1>
+  <div class ="left-Col">
+      <h1 class="SolutionComp">Solutions to completed challenges</h1>
+      <p><%= link_to 'Start new challenge', challenges_path	 %></p>
+      <hr>
 
-<div><p><%= link_to 'Create new challenge', new_challenge_path	 %></p></div>
+      <ul class="yoursolutions">
+      <% @user.solutions.each do |solution| %>
+        <br>
+        <li>
+          <%= link_to "#{solution.challenge.name}", solution_path(solution.id) %>
 
-<ul class="youridea">
-    <% @user.challenges.each do |challenge| %>
-      <br>
-      <li>
-        <%= link_to challenge.name, challenge_path(challenge.id) %>
+           </li>
+        <% end %>
+      </ul>
+  </div>
 
-         </li>
-      <% end %>
-    </ul>
-
-    </div><!-- div.col-6, right hand column -->
-
-    </div><!-- div.row -->
-</div><!-- div.jumbotron -->
-
-
-<h1>Solutions to completed challenges</h1>
-
-<div><p><%= link_to 'Start new challenge', challenges_path	 %></p></div>
+  <div class="vertical-l"></div>
 
 
-<ul class="yoursolutions">
-    <% @user.solutions.each do |solution| %>
-      <br>
-      <li>
-        <%= link_to "#{solution.challenge.name}", solution_path(solution.id) %>
 
-         </li>
-      <% end %>
-    </ul>
+  <div class="right-Col">
+      <h1>Your challenges</h1>
+      <p class="newChall"><%= link_to 'Create new challenge', new_challenge_path %></p>
+      <hr class="hr">
 
-    </div><!-- div.col-6, right hand column -->
 
-    </div><!-- div.row -->
-</div><!-- div.jumbotron -->
+      <ul class="youridea">
+        <% @user.challenges.each do |challenge| %>
+          <br>
+          <li>
+            <%= link_to challenge.name, challenge_path(challenge.id) %>
+
+             </li>
+          <% end %>
+        </ul>
+
+
+    </div>
+</div>
