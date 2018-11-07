@@ -36,7 +36,7 @@ nav {
   top: 0;
   left: 0;
   padding: 5px;
-  width: 100%;
+  width: 100vw;
   position: absolute;
   display: block;
   background-color: red;
@@ -55,8 +55,22 @@ nav {
 .navLink {
   display: inline;
   position: relative;
-  float: right;
   padding-right: 10px;
   color: white;
   text-decoration: none;
+}
+
+.navContainer{
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-column-gap: 20px;
+}
+
+.welcome{
+  grid-column-start: 1;
+  grid-column-end: 4;
+}
+
+.navLinkOut{
+  grid-column-start: 4;
 }
