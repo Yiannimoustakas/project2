@@ -19,15 +19,17 @@
 
 const RunSolution = () => {
   let js = editor.getValue();
-  let s = document.createElement('script');
-  s.textContent = `funk = val => {
-    ${js}
-  }`;
-  document.body.appendChild(s);
   let correctAnswers = 0;
   let failedInputs = [];
+  let s;
   let totalTests = data.inputs.length;
   try {
+    s = document.createElement('script');
+    s.textContent = `funk = input => {
+      ${js}
+      return output;
+    }`;
+    document.body.appendChild(s);
     for (var i = 0; i < data.inputs.length; i++) {
       output = funk(data.inputs[i]);
       console.log(`comparing ${output} to ${data.outputs[i]}`);
@@ -35,7 +37,7 @@ const RunSolution = () => {
       if (output === data.outputs[i] || (data.outputs[i].constructor === Array && output.constructor === Array && arrayEquality(data.outputs[i], output))) {
         correctAnswers ++;
       }else{
-        failedInputs.push(`Input value ${data.inputs[i]} generated the incorrect answer: ${output}`);
+        failedInputs.push(`Input "${data.inputs[i]}" generated the incorrect answer: "${output}"`);
       }
     }
     score = Math.round((correctAnswers/data.inputs.length) * 100);

@@ -4,7 +4,9 @@
     <p><%= @challenge.description %></p>
   </div>
   <div class="code-textarea">
+    let funk = function(input){
     <textarea name="code" class="codearea" id="editor"><%= @solution.code %></textarea>
+    return output;
     <% if @solution.user_id == @current_user.id %>
       <a href="/solutions/<%= @solution.id %>/edit" class=editLink>Edit Solution</a>
     <% end %>
