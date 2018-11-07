@@ -19,14 +19,20 @@
 
 const RunSolution = () => {
   let js = editor.getValue();
-  let s = document.createElement('script');
-  s.textContent = `funk = val => {
-    ${js}
-  }`;
-  document.body.appendChild(s);
   let correctAnswers = 0;
   let failedInputs = [];
+  let s;
   let totalTests = data.inputs.length;
+  s = document.createElement('script');
+  s.textContent = `try{
+    funk = input => {
+      ${js}
+      return output;
+    }
+  }catch (error){
+    handleError(error)
+  }`;
+  document.body.appendChild(s);
   try {
     for (var i = 0; i < data.inputs.length; i++) {
       output = funk(data.inputs[i]);
@@ -35,15 +41,19 @@ const RunSolution = () => {
       if (output === data.outputs[i] || (data.outputs[i].constructor === Array && output.constructor === Array && arrayEquality(data.outputs[i], output))) {
         correctAnswers ++;
       }else{
-        failedInputs.push(`Input value ${data.inputs[i]} generated the incorrect answer: ${output}`);
+        failedInputs.push(`Input "${data.inputs[i]}" generated the incorrect answer: "${output}"`);
       }
     }
     score = Math.round((correctAnswers/data.inputs.length) * 100);
     message = `${correctAnswers} out of ${data.inputs.length} correct. ${score}%`
   }catch (error){
-    line = error.stack.split(':')[2];
-    line = parseInt(line)-1;
-    message = `${error.message}. Best guess: line ${line}`;
+    if (error.message === "funk is not defined"){
+      message = "Function definiton failed. Most likely lacking brackets somewhere."
+    }else{
+      line = error.stack.split(':')[2];
+      line = parseInt(line)-1;
+      message = `${error.message}. Best guess: line ${line}`;
+    }
   }
   $('.results div').empty();
   $('.results div').text(message);
@@ -53,6 +63,7 @@ const RunSolution = () => {
   }
   $('#scorefield').val(score);
   s.remove()
+  delete funk;
 }
 
 const arrayEquality = (arr1, arr2) => {
@@ -70,4 +81,9 @@ const arrayEquality = (arr1, arr2) => {
 
 const testing = () => {
   console.log("heeeelp");
+}
+
+handleError = err =>{
+  console.log("we got here");
+  console.log(err.stack);
 }
