@@ -11,7 +11,7 @@ class ChallengesController < ApplicationController
     challenge = Challenge.create(challenge_params)
     challenge.user_id = @current_user.id
     challenge.save
-    redirect_to challenges_path
+    redirect_to challenge_path(challenge.id)
   end
 
   def index
