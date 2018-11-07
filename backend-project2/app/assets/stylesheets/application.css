@@ -23,9 +23,40 @@ body{
  padding: 0;
  height: 100vh;
  width: 100vw;
+ font-family: monospace;
 }
 
 main{
   height: 95%;
   width: 95%;
+  padding-top: 20px;
+}
+
+nav {
+  top: 0;
+  left: 0;
+  padding: 5px;
+  width: 100%;
+  position: absolute;
+  display: block;
+  background-color: red;
+}
+
+.CreateAcc{
+  text-align: center;
+}
+
+.welcome {
+  display: inline-block;
+  text-align: left;
+  color: white;
+}
+
+.navLink {
+  display: inline;
+  position: relative;
+  float: right;
+  padding-right: 10px;
+  color: white;
+  text-decoration: none;
 }

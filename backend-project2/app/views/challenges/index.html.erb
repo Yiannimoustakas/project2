@@ -1,8 +1,8 @@
 <h2>All Challenges</h2>
-<%# <% if @current_user.present? %>
-<%= link_to 'Add New Challenge', new_challenge_path %>
-<%# <% end %>
 
+<%= link_to "Random Challenge Generator", challenge_path("#{Challenge.all.ids.sample}") %>
+
+<h3>All Challenges</h3>
 <ul>
   <% @challenges.each do |challenge| %>
     <li>
@@ -11,4 +11,7 @@
   <% end %>
 </ul>
 
-<%= link_to "Random Challenge Generator", challenge_path("#{Challenge.all.ids.sample}") %>
+
+<% if @current_user.present? %>
+<%= link_to 'Add New Challenge', new_challenge_path %>
+<% end %>

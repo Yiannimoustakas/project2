@@ -19,6 +19,7 @@ puts "Created #{User.all.length} users."
 Challenge.destroy_all
 
 c1 = Challenge.create name: 'Square number', description: "Return the square of the given inputs", user_id: u1.id
+c2 = Challenge.create name: 'Longest number', description: "Have the function LongestWord(sen) take the sen parameter being passed and return the largest word in the string. If there are two or more words that are the same length, return the first word from the string with that length. Ignore punctuation and assume sen will not be empty. ", user_id: u1.id
 
 puts "Created #{Challenge.all.length} Challenges."
 
@@ -30,6 +31,8 @@ tp3 = TestPair.create input: 3, output: 9, input_type: 0, output_type: 0, challe
 tp4 = TestPair.create input: 4, output: 16, input_type: 0, output_type: 0, challenge_id: c1.id
 tp5 = TestPair.create input: 5, output: 25, input_type: 0, output_type: 0, challenge_id: c1.id
 tp6 = TestPair.create input: 6, output: 36, input_type: 0, output_type: 0, challenge_id: c1.id
+tp7 = TestPair.create input: "fun&!! time", output: "time", input_type: 1, output_type: 1, challenge_id: c2.id
+tp8 = TestPair.create input: "I love dogs", output: "love", input_type: 1, output_type: 1, challenge_id: c2.id
 
 puts "Created #{TestPair.all.length} TestPairs."
 

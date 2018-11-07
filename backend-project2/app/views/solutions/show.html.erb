@@ -2,6 +2,7 @@
   <div class="challenge-info">
     <h2><a href="/challenges/<%= @challenge.id %>"><%= @challenge.name %></a> </h2>
     <p><%= @challenge.description %></p>
+    <p><%= link_to "Start Another Challenge", challenge_path("#{Challenge.all.ids.sample}") %></p>
   </div>
   <div class="code-textarea">
     <textarea name="code" class="codearea" id="editor"><%= @solution.code %></textarea>

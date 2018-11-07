@@ -2,11 +2,15 @@ class TestPairsController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   def new
+    @params = params[:id]
+    @@challenge = Challenge.find params[:id]
     @test_pair = TestPair.new
+    @test_pair.challenge_id = @@challenge.id
   end
 
   def create
     @test_pair = TestPair.new(test_pair_params)
+    @test_pair.challenge_id = @@challenge.id
     @test_pair.save
     redirect_to challenge_path(@test_pair.challenge_id), notice: 'Test Pair was successfully created'
   end
@@ -34,13 +38,13 @@ class TestPairsController < ApplicationController
   end
 
   def destroy
-    test_pair = TestPair.find params[:id]
-    test_pair.destroy
-    redirect_to challenge_path(test_pair.challenge_id)
+    @test_pair = TestPair.find(params[:id])
+    @test_pair.destroy
+    redirect_to challenge_path(@test_pair.challenge_id)
   end
 
   private
   def test_pair_params
-    params.require(:test_pair).permit(:input, :output, :test_pair_type, :challenge_id)
+    params.require(:test_pair).permit(:input, :output, :input_type, :output_type, :challenge_id)
   end
 end
