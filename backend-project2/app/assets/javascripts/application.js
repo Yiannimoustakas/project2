@@ -17,8 +17,6 @@
 //= require jquery
 //= require codemirror/modes/javascript
 
-
-
 const RunSolution = () => {
   let js = editor.getValue();
   let s = document.createElement('script');
@@ -32,7 +30,9 @@ const RunSolution = () => {
   try {
     for (var i = 0; i < data.inputs.length; i++) {
       output = funk(data.inputs[i]);
-      if (output.toString() === data.outputs[i]){
+      console.log(`comparing ${output} to ${data.outputs[i]}`);
+      console.log(arrayEquality(data.outputs[i], output));
+      if (output === data.outputs[i] || (data.outputs[i].constructor === Array && output.constructor === Array && arrayEquality(data.outputs[i], output))) {
         correctAnswers ++;
       }else{
         failedInputs.push(`Input value ${data.inputs[i]} generated the incorrect answer: ${output}`);
@@ -53,6 +53,19 @@ const RunSolution = () => {
   }
   $('#scorefield').val(score);
   s.remove()
+}
+
+const arrayEquality = (arr1, arr2) => {
+  if (arr1.length !== arr2.length){
+    return false;
+  }else{
+    for( i = 0; i < arr1.length; i ++){
+      if (arr1[i].toString() !== arr2[i].toString()){
+        return false;
+      }
+    }
+  }
+  return true;
 }
 
 const testing = () => {
