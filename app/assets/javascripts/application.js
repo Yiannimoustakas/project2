@@ -24,14 +24,11 @@ const RunSolution = () => {
   let s;
   let totalTests = data.inputs.length;
   s = document.createElement('script');
-  s.textContent = `try{
+  s.textContent = `
     funk = input => {
       ${js}
       return output;
-    }
-  }catch (error){
-    handleError(error)
-  }`;
+    }`
   document.body.appendChild(s);
   try {
     for (var i = 0; i < data.inputs.length; i++) {
@@ -47,11 +44,12 @@ const RunSolution = () => {
     score = Math.round((correctAnswers/data.inputs.length) * 100);
     message = `${correctAnswers} out of ${data.inputs.length} correct. ${score}%`
   }catch (error){
+    score = 0;
     if (error.message === "funk is not defined"){
       message = "Function definiton failed. Most likely lacking brackets somewhere."
     }else{
       line = error.stack.split(':')[2];
-      line = parseInt(line)-1;
+      line = parseInt(line)-2;
       message = `${error.message}. Best guess: line ${line}`;
     }
   }
