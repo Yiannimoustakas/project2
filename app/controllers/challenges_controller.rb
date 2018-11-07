@@ -16,10 +16,15 @@ class ChallengesController < ApplicationController
 
   def index
     @challenges = Challenge.all
+    @random = get_random(@challenges)
   end
 
   def show
     @challenge = Challenge.find params[:id]
+    @next = next_chall(Challenge.all, @challenge)
+    @solved = @challenge.solutions.map  { |x| x.user_id }
+    @solutions = @current_user.solutions
+    @solution = show_current_solution(@solutions, params[:id])
   end
 
   def edit
@@ -46,5 +51,26 @@ class ChallengesController < ApplicationController
   private
   def challenge_params
     params.require(:challenge).permit(:name, :description, :user_id)
+  end
+
+  def get_random(arr)
+    arr.sample
+  end
+
+  def next_chall (arr, challenge)
+    chall_index = arr.index(challenge)
+    if challenge == arr.last
+      arr.first
+    else
+      arr[chall_index + 1]
+    end
+  end
+
+  def show_current_solution (arr, num)
+    arr.each do |element|
+      if element.id == num
+        element
+      end
+    end
   end
 end

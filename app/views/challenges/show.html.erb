@@ -4,10 +4,14 @@
 
 
     <h1><%= @challenge.name%></h1>
-    <%# The link below will send params in the string when the user attempts to complete a solution %>
-    <%= link_to "Start A Solution For This Challenge", new_solution_path(params: {id: @challenge.id}) %> <br>
+
+    <% if (!@solved.include?(@current_user.id)) %>
+      <%= link_to "Start A Solution For This Challenge", new_solution_path(params: {id: @challenge.id}) %> <br>
+    <% else %>
+      <p>You've already completed this challenge <%= link_to "View Your Solution", solution_path(@solution[0].id) %></p>
+    <% end %>
     OR <br>
-    <%= link_to "Go To Another Challenge", challenge_path("#{Challenge.all.ids.sample}") %>
+    <%= link_to "Go To Next Challenge", challenge_path((@next)) %>
     <br>
     <br>
     <p><strong>Description:</strong> <%= @challenge.description %></p>
@@ -35,7 +39,7 @@
           <strong>Output:</strong> <%= test_pair.output %> <br>
           <% if @current_user.present? %>
             <%= link_to 'Edit Test Pair', edit_test_pair_path(test_pair.id) %><br>
-            <%= link_to 'Delete Test Pair', test_pair_path(test_pair.challenge_id), method: 'delete' %>
+            <%= link_to 'Delete Test Pair', test_pair_path(test_pair.id), method: 'delete' %>
           <% end %>
           <br>
           <br>
@@ -57,7 +61,7 @@
         <ul>
           <% @challenge.solutions.each do |solution| %>
             <li>
-              <strong>User</strong> <%= solution.user.name %><br>
+              <strong>User</strong> <%= link_to solution.user.name, solution_path(solution.id) %><br>
               <strong>Solution</strong> <%= solution.code %><br><br>
             </li>
           <% end %>
