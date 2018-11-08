@@ -29,13 +29,13 @@ body{
 main{
   height: 95%;
   width: 95%;
-  padding-top: 20px;
+  padding-top: 5vh;
 }
 
 nav {
   top: 0;
   left: 0;
-  padding: 5px;
+  padding: 5;
   width: 100vw;
   position: absolute;
   display: block;
@@ -63,7 +63,6 @@ nav {
 .navContainer{
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-column-gap: 20px;
 }
 
 .welcome{

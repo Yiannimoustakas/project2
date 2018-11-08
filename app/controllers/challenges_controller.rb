@@ -11,11 +11,11 @@ class ChallengesController < ApplicationController
     challenge = Challenge.create(challenge_params)
     challenge.user_id = @current_user.id
     challenge.save
-    redirect_to challenges_path
+    redirect_to challenge_path(challenge.id)
   end
 
   def index
-    @challenges = Challenge.all
+    @challenges = Challenge.all.reverse
     @random = get_random(@challenges)
   end
 
@@ -23,8 +23,10 @@ class ChallengesController < ApplicationController
     @challenge = Challenge.find params[:id]
     @next = next_chall(Challenge.all, @challenge)
     @solved = @challenge.solutions.map  { |x| x.user_id }
-    @solutions = @current_user.solutions
-    @solution = show_current_solution(@solutions, params[:id])
+    if @current_user.present?
+      @solutions = @current_user.solutions
+      @solution = show_current_solution(@solutions, params[:id])
+    end
   end
 
   def edit

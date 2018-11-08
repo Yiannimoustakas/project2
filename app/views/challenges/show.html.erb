@@ -2,12 +2,47 @@
 <div class="challContainer">
 
   <div class="challGridItem1">
+<<<<<<< HEAD
 
     <div class="card border-primary mb-3" style="max-width: 20rem;">
     <br> <h1><%= @challenge.name%> </h1> 
     <div class="card-header"><%= link_to "BACK TO CHALLENGES", challenges_path, class: "btn btn-success" %>
 
 
+=======
+    <br><br><%= link_to "BACK TO CHALLENGES", challenges_path %> <br><br>
+
+
+    <h1><%= @challenge.name%></h1>
+    <% if @solutions == nil %>
+      <%= link_to "Start A Solution For This Challenge", new_solution_path(params: {id: @challenge.id}) %> <br>
+    <% else %>
+      <% if (!@solved.include?(@current_user.id)) %>
+        <%= link_to "Start A Solution For This Challenge", new_solution_path(params: {id: @challenge.id}) %> <br>
+      <% else %>
+        <p><%= link_to "View Your Solution", solution_path(@solution[0].id) %></p>
+      <% end %>
+    <% end %>
+    OR <br>
+    <%= link_to "Go To Next Challenge", challenge_path((@next)) %>
+    <br>
+    <br>
+    <p><strong>Description:</strong> <%= @challenge.description %></p>
+    <p><strong>Difficulty:</strong> ?</p>
+    <p><strong>Completion Rate:</strong> ?</p>
+    <p><strong>Created By:</strong> <%= @challenge.user.name %>
+
+
+    <br>
+    <br>
+    <% if @current_user.present? %>
+      <% if @current_user.challenges.include?(@challenge) %>
+        <%= link_to 'Edit Challenge', edit_challenge_path(@challenge.id) %><br>
+        <%= link_to 'Delete Challenge', challenge_path(@challenge.id), method: 'delete' %><br>
+      <% end %>
+    <% end %>
+    <br>
+>>>>>>> 352957612d449add2daf6ff56ce79ac8c7d89541
   </div>
     <div class="card-body">
       <h4 class="card-title">  </h4>
@@ -31,8 +66,15 @@
           <br>
           <br>
           <% if @current_user.present? %>
+<<<<<<< HEAD
           <%= link_to 'Edit Challenge', edit_challenge_path(@challenge.id) %><br>
           <%= link_to 'Delete Challenge', challenge_path(@challenge.id), method: 'delete' %><br>
+=======
+            <% if @current_user.challenges.include?(@challenge) %>
+              <%= link_to 'Edit Test Pair', edit_test_pair_path(test_pair.id) %><br>
+              <%= link_to 'Delete Test Pair', test_pair_path(test_pair.id), method: 'delete' %>
+            <% end %>
+>>>>>>> 352957612d449add2daf6ff56ce79ac8c7d89541
           <% end %>
           <br>
         </div></p>
@@ -49,6 +91,7 @@
     <div class="card-header">    <h2>Test Pairs</h2>  <% if @current_user.present? %>
         <%= link_to 'Add A Test Pair', new_test_pair_path(params: {id: @challenge.id}), class:"btn btn-success" %><br>
       <% end %>
+<<<<<<< HEAD
 </div>
     <div class="card-body">
       <h4 class="card-title"></h4>
@@ -73,6 +116,16 @@
           <br>
         </div></p>
     </div>
+=======
+    </ul>
+    <% if @current_user.present? %>
+      <% if @current_user.challenges.include?(@challenge) %>
+        <%= link_to 'Add A Test Pair', new_test_pair_path(params: {id: @challenge.id}) %><br>
+      <% end %>
+    <% end %>
+    <br>
+    <br>
+>>>>>>> 352957612d449add2daf6ff56ce79ac8c7d89541
   </div>
 
 

@@ -1,6 +1,42 @@
-<%= form_for @solution, :html => {class: 'code-form'} do |f| %>
-  <%= f.hidden_field :score, {value: 0, id: "scorefield" }%>
-  <%= f.hidden_field :challenge_id, value: @solution.challenge_id %>
-  <%= f.text_area :code, {class: 'codearea', id: 'editor'}%>
-  <%= f.submit 'Save Solution', class: 'submit-button' %>
-<% end %>
+<div class='form-container'>
+  <div class='top'>
+    <textarea name="definition" id="definitionArea" cols="30" rows="10">const funk = function(input){</textarea>
+  </div>
+  <div class='mid'>
+    <%= form_with(model: @solution, :html => {class: 'code-form' , remote: true}) do |f| %>
+      <%= f.hidden_field :score, {value: 0, id: "scorefield" }%>
+      <%= f.hidden_field :challenge_id, value: @solution.challenge_id %>
+      <%= f.text_area :code, {class: 'codearea', id: 'editor'}%>
+      <%= f.submit 'Save Solution', class: 'submit-button' %>
+    <% end %>
+  </div>
+  <div class='bottom'>
+    <textarea name="return" id="returnArea" cols="30" rows="10">    return output;
+}</textarea>
+  </div>
+</div>
+
+<script>
+  $(document).ready(function(){
+    let myTextArea = $('#definitionArea')[0];
+    editor = CodeMirror.fromTextArea( myTextArea, {
+      value: myTextArea.value,
+      theme: 'neat',
+      lineNumbers: false,
+      readOnly: true,
+    });
+    myTextArea = $('#returnArea')[0];
+    editor = CodeMirror.fromTextArea( myTextArea, {
+      value: myTextArea.value,
+      theme: 'neat',
+      lineNumbers: false,
+      readOnly: true,
+    });
+    myTextArea = $('.codearea')[0];
+    editor = CodeMirror.fromTextArea( myTextArea, {
+      value: myTextArea.value,
+      theme: 'neat',
+      lineNumbers: true,
+    });
+  });
+</script>
