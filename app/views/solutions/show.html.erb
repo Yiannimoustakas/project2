@@ -1,7 +1,9 @@
 <div class="grid-Container">
   <div class="challenge-info">
-    <h2><a href="/challenges/<%= @challenge.id %>">Solving "<%= @challenge.name %>"</a> </h2>
-    <p><%= @challenge.description %></p>
+    <h2><a href="/challenges/<%= @challenge.id %>"><%= @challenge.name %></a></h2>
+    <p><%= @challenge.description %> <br>
+      <strong>Example Input-->Output:</strong> <%= @challenge.test_pairs[0].input %> --> <%= @challenge.test_pairs[0].output %>
+    </p>
     <p><%= link_to "Start Another Challenge", challenge_path("#{Challenge.all.ids.sample}"), class:"btn btn-success" %></p>
   </div>
   <div class="code-textarea">
@@ -12,28 +14,23 @@ return output;
 }
     </textarea>
     <% if @solution.user_id == @current_user.id %>
-      <a href="/solutions/<%= @solution.id %>/edit" class="editLink">Edit Solution</a>
+      <a href="/solutions/<%= @solution.id %>/edit" class="editLink btn btn-primary">Edit Solution</a>
     <% end %>
   </div>
   <div class="results">
-    <button class="runButton" type="button" name="button" onClick='RunSolution()'>Run Code</button>
+    <button class="runButton btn btn-info" type="button" name="button" onClick='RunSolution()'>Run Code</button>
     <div class="resultAppend">
     </div>
   </div>
   <div class="commentSection">
     <h2>Comments</h2>
-    <div class="allComments">
-      <% @solution.comments.each do |comment| %>
-        <div class="commentBox">
-          <h4><%= comment.user.name %>  says:</h4>
-          <p><%= simple_format(comment.body) %></p>
-          <h5 class="comment">created <%= time_ago_in_words(comment.created_at) %> ago</h5>
-          <% if @current_user.present? %>
-            <% if comment.user_id == @current_user.id %>
-            <h5 class="comment"><%= link_to 'remove', comment_path(comment.id), method: 'delete' %> </h5>
-            <% end %>
-          <% end %>
-        </div>
+    <% @solution.comments.each do |comment| %>
+    <div class="comment">
+      <span><strong><%= comment.body %></strong><br> - <%= comment.user.name %> <%= time_ago_in_words(comment.created_at) %> ago</span>
+      <% if @current_user.present? %>
+        <% if comment.user_id == @current_user.id %>
+        <span><%= link_to 'remove', comment_path(comment.id), method: 'delete' %> </span>
+        <% end %>
       <% end %>
     </div>
     <br>
@@ -54,7 +51,7 @@ return output;
   myTextArea = $('.codearea')[0];
   editor = CodeMirror.fromTextArea( myTextArea, {
     value: myTextArea.value,
-    theme: 'dracula',
+    theme: 'liquibyte',
     lineNumbers: true,
     readOnly: true
   });

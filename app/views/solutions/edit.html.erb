@@ -1,13 +1,15 @@
 <div class="grid-Container">
   <div class="challenge-info">
-    <h2><a href="/challenges/<%= @challenge.id %>"><%= @challenge.name %></a> </h2>
-    <p><%= @challenge.description %></p>
+    <h2><a href="/challenges/<%= @challenge.id %>"><%= @challenge.name %></a></h2>
+    <p><%= @challenge.description %> <br>
+      <strong>Example Input-->Output:</strong> <%= @challenge.test_pairs[0].input %> --> <%= @challenge.test_pairs[0].output %>
+    </p>
   </div>
   <div class="code-textarea">
     <%= render partial: 'formnew' %>
   </div>
   <div class="results">
-    <button type="button" name="button" onClick='RunSolution()'>Run Code</button>
+    <button type="button" name="button" class="runButton btn btn-info" onClick='RunSolution()'>Run Code</button>
     <div></div>
   </div>
 </div>

@@ -1,9 +1,9 @@
 <div class="grid-Container">
   <div class="challenge-info">
     <h2><a href="/challenges/<%= @challenge.id %>"><%= @challenge.name %></a></h2>
-    <strong>This is the trial page. Feel free to write some code and play around, but you wont be able to save anything until you're logged into an account</strong>
-    <p><%= @challenge.description %></p>
-    <p><%= link_to "Look at other challenges", challenges_path%></p>
+    <p><%= @challenge.description %> <br>
+      <strong>Example Input-->Output:</strong> <%= @challenge.test_pairs[0].input %> --> <%= @challenge.test_pairs[0].output %>
+    </p>
   </div>
   <div class="code-textarea">
     <div class='top'>
@@ -17,6 +17,10 @@
 }</textarea>
     </div>
   </div>
+  <div id="aside">
+    <strong>This is the trial page. Feel free to write some code and play around, but you wont be able to save anything until you're logged into an account</strong> <br>
+    <p><%= link_to "Look at other challenges", challenges_path%></p>
+  </div>
   <div class="results">
     <button type="button" name="button" onClick='RunSolution()'>Run Code</button>
     <div></div>
@@ -29,21 +33,21 @@
     let myTextArea = $('#definitionArea')[0];
     editor = CodeMirror.fromTextArea( myTextArea, {
       value: myTextArea.value,
-      theme: 'dracula',
+      theme: 'liquibyte',
       lineNumbers: false,
       readOnly: true,
     });
     myTextArea = $('#returnArea')[0];
     editor = CodeMirror.fromTextArea( myTextArea, {
       value: myTextArea.value,
-      theme: 'dracula',
+      theme: 'liquibyte',
       lineNumbers: false,
       readOnly: true,
     });
     myTextArea = $('.codearea')[0];
     editor = CodeMirror.fromTextArea( myTextArea, {
       value: myTextArea.value,
-      theme: 'dracula',
+      theme: 'liquibyte',
       lineNumbers: true,
     });
   });

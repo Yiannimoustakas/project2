@@ -64,21 +64,21 @@ const convertForm = () => {
   let myTextArea = $('#definitionArea')[0];
   editor = CodeMirror.fromTextArea( myTextArea, {
     value: myTextArea.value,
-    theme: 'dracula',
+    theme: 'liquibyte',
     lineNumbers: false,
     readOnly: true,
   });
   myTextArea = $('#returnArea')[0];
   editor = CodeMirror.fromTextArea( myTextArea, {
     value: myTextArea.value,
-    theme: 'dracula',
+    theme: 'liquibyte',
     lineNumbers: false,
     readOnly: true,
   });
   myTextArea = $('.codearea')[0];
   editor = CodeMirror.fromTextArea( myTextArea, {
     value: myTextArea.value,
-    theme: 'dracula',
+    theme: 'liquibyte',
     lineNumbers: true,
   });
 }
