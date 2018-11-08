@@ -78,3 +78,7 @@ nav {
 .navbar navbar-expand-lg navbar-light bg-dark{
   width: 100%;
 }
+
+nav:hover{
+  background-color: yellow;
+}
