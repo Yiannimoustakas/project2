@@ -19,18 +19,20 @@
   </div>
   <div class="commentSection">
     <h2>Comments</h2>
-    <% @solution.comments.each do |comment| %>
-    <div class="commentBox">
-      <h4><%= comment.user.name %>  says:</h4>
-      <p><%= simple_format(comment.body) %></p>
-      <h5 class="comment">created <%= time_ago_in_words(comment.created_at) %> ago</h5>
-      <% if @current_user.present? %>
-        <% if comment.user_id == @current_user.id %>
-        <h5 class="comment"><%= link_to 'remove', comment_path(comment.id), method: 'delete' %> </h5>
-        <% end %>
+    <div class="allComments">
+      <% @solution.comments.each do |comment| %>
+        <div class="commentBox">
+          <h4><%= comment.user.name %>  says:</h4>
+          <p><%= simple_format(comment.body) %></p>
+          <h5 class="comment">created <%= time_ago_in_words(comment.created_at) %> ago</h5>
+          <% if @current_user.present? %>
+            <% if comment.user_id == @current_user.id %>
+            <h5 class="comment"><%= link_to 'remove', comment_path(comment.id), method: 'delete' %> </h5>
+            <% end %>
+          <% end %>
+        </div>
       <% end %>
     </div>
-    <% end %>
     <br>
     <%= form_tag(comments_path, {class: "commentsForm"}) do  %>
       leave a <%= label_tag :Comment %>: <br>

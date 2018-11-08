@@ -12,9 +12,9 @@ $(document).ready(function() {
       $(`  <div class="commentBox">
           <h4>${response.user.name}  says:</h4>
           <p>${response.body}</p>
-          <h5 class="comment">created ${this.now}</h5>
+          <h5 class="comment">created ${Date.now()}</h5>
           <h5 class="comment"><a href="/solutions/${response.solution_id}" data-method: 'delete'>remove</a></h5>
-        </div>`).appendTo(".commentBox")
+        </div>`).appendTo(".allComments")
 
 
     })
