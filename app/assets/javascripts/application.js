@@ -8,7 +8,6 @@ let editor;
 let data;
 let errors;
 let score;
-let funk;
 
 const RunSolution = () => {
   let js = editor.getValue();

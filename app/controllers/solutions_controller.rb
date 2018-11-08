@@ -4,14 +4,24 @@ class SolutionsController < ApplicationController
 
 
   def new
+    @challenge = Challenge.find params[:id]
+    if @current_user.present?
+      @solution = Solution.create(
+        challenge_id: @challenge.id,
+        user_id: @current_user.id,
+        score: 0
+      )
+      redirect_to edit_solution_path @solution.id
+    else
+      redirect_to solution_trial_path @challenge.id
+    end
     # route to here from a challenge show page, so challenge id will be in params.
     # @challenge = Challenge.first Hard Code.
     # This is the params passed form the link_to on challenge show page
-    @params = params[:id]
-    @challenge = Challenge.find params[:id]
-    @data = getData(@challenge).to_json.html_safe
-    @solution = Solution.new
-    @solution.challenge_id = @challenge.id
+    # @params = params[:id]
+    # @data = getData(@challenge).to_json.html_safe
+    # @solution = Solution.new
+    # @solution.challenge_id = @challenge.id
   end
 
   def create
@@ -28,6 +38,11 @@ class SolutionsController < ApplicationController
   def edit
     @solution = Solution.find(params[:id])
     @challenge = Challenge.find(@solution.challenge_id)
+    @data = getData(@challenge).to_json.html_safe
+  end
+
+  def trial
+    @challenge = Challenge.find(params[:id])
     @data = getData(@challenge).to_json.html_safe
   end
 
@@ -58,7 +73,7 @@ class SolutionsController < ApplicationController
   private
 
   def solution_params
-    params.require(:solution).permit(:code, :challenge_id)
+    params.require(:solution).permit(:code, :challenge_id, :score)
   end
 
   def getData(challenge)

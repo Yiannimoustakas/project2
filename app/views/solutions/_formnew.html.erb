@@ -3,7 +3,7 @@
     <textarea name="definition" id="definitionArea" cols="30" rows="10">const funk = function(input){</textarea>
   </div>
   <div class='mid'>
-    <%= form_for @solution, :html => {class: 'code-form'} do |f| %>
+    <%= form_with(model: @solution, :html => {class: 'code-form' , remote: true}) do |f| %>
       <%= f.hidden_field :score, {value: 0, id: "scorefield" }%>
       <%= f.hidden_field :challenge_id, value: @solution.challenge_id %>
       <%= f.text_area :code, {class: 'codearea', id: 'editor'}%>

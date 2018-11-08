@@ -1,0 +1,49 @@
+<div class="grid-Container">
+  <div class="challenge-info">
+    <h2><a href="/challenges/<%= @challenge.id %>"><%= @challenge.name %></a> </h2>
+    <p><%= @challenge.description %></p>
+    <p><%= link_to "Look at Another Challenge", challenges_path%></p>
+  </div>
+  <div class="code-textarea">
+    <div class='top'>
+      <textarea name="definition" id="definitionArea" cols="30" rows="10">const funk = function(input){</textarea>
+    </div>
+    <div class='mid'>
+      <textarea name="code" class="codearea" id="editor"></textarea>
+    </div>
+    <div class='bottom'>
+      <textarea name="return" id="returnArea" cols="30" rows="10">    return output;
+}</textarea>
+    </div>
+  </div>
+  <div class="results">
+    <button type="button" name="button" onClick='RunSolution()'>Run Code</button>
+    <div></div>
+  </div>
+</div>
+
+<script>
+  $(document).ready(function(){
+    data = (<%= @data %>);
+    let myTextArea = $('#definitionArea')[0];
+    editor = CodeMirror.fromTextArea( myTextArea, {
+      value: myTextArea.value,
+      theme: 'neat',
+      lineNumbers: false,
+      readOnly: true,
+    });
+    myTextArea = $('#returnArea')[0];
+    editor = CodeMirror.fromTextArea( myTextArea, {
+      value: myTextArea.value,
+      theme: 'neat',
+      lineNumbers: false,
+      readOnly: true,
+    });
+    myTextArea = $('.codearea')[0];
+    editor = CodeMirror.fromTextArea( myTextArea, {
+      value: myTextArea.value,
+      theme: 'neat',
+      lineNumbers: true,
+    });
+  });
+</script>

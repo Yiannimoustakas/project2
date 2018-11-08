@@ -12,12 +12,13 @@
 .form-container{
   display: grid;
   grid-template-rows: 20px 1fr 40px;
+  grid-template-columns: 100%;
   height: 100%;
   width: 100%;
 }
 
 .mid{
-  height: 60vh;
+  height: 100%;
   width: 100%;
 }
 
@@ -26,7 +27,7 @@
   width: 100%;
   display: grid;
   grid-template-columns: 3fr 1fr 2fr;
-  grid-template-rows: 1fr 3fr 1fr;
+  grid-template-rows: 20vh 60vh 20vh;
 }
 
 .code-form{

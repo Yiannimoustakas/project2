@@ -2,7 +2,7 @@
   <div class="challenge-info">
     <h2><a href="/challenges/<%= @challenge.id %>"><%= @challenge.name %></a> </h2>
     <p><%= @challenge.description %></p>
-    <p><%= link_to "Start Another Challenge", challenge_path("#{Challenge.all.ids.sample}") %></p>
+    <p><%= link_to "Look at Another Challenge", challenges_path%></p>
   </div>
   <div class="code-textarea">
     let funk = function(input){
