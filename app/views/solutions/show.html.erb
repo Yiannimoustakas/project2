@@ -13,8 +13,32 @@
     <% end %>
   </div>
   <div class="results">
-    <button type="button" name="button" onClick='RunSolution()'>Run Code</button>
-    <div></div>
+    <button class="runButton" type="button" name="button" onClick='RunSolution()'>Run Code</button>
+    <div class="resultAppend">
+    </div>
+  </div>
+  <div class="commentSection">
+    <h2>Comments</h2>
+    <% @solution.comments.each do |comment| %>
+    <div class="commentBox">
+      <h4><%= comment.user.name %>  says:</h4>
+      <p><%= simple_format(comment.body) %></p>
+      <h5 class="comment">created <%= time_ago_in_words(comment.created_at) %> ago</h5>
+      <% if @current_user.present? %>
+        <% if comment.user_id == @current_user.id %>
+        <h5 class="comment"><%= link_to 'remove', comment_path(comment.id), method: 'delete' %> </h5>
+        <% end %>
+      <% end %>
+    </div>
+    <% end %>
+    <br>
+    <%= form_tag(comments_path, {class: "commentsForm"}) do  %>
+      leave a <%= label_tag :Comment %>: <br>
+      <%= text_area_tag(:body) %> <br>
+      <%= hidden_field_tag :solution_id,"#{@solution.id}" %>
+      <br>
+      <%= submit_tag("Post Comment", {class: "submitComment"})%>
+    <% end  %>
   </div>
 </div>
 
@@ -23,35 +47,3 @@
     data = (<%= @data %>);
   });
 </script>
-
-
-<% @solution.comments.each do |comment| %>
-
-  <div class="comment">
-
-    <h6><%= comment.user.name %>       says:
- <br>
-
-
-  created <%= time_ago_in_words(comment.created_at) %> ago
-
-
-  <%= simple_format(comment.body) %>
-
-     <h5 class ="comment"><%= link_to 'edit comement', edit_comment_path(comment.id) %> </h5>
-
-     <h5 class="comment"><%= link_to 'Delete comement', comment_path(comment.id), method: 'delete' %> </h5>
-
-
-  </div>
-    <% end %>
-
-
-<%= form_tag comments_path do  %>
-    leave a <%= label_tag :Comment %>: <br>
-      <%= text_area_tag :body %> <br>
-    <%= hidden_field_tag :solution_id,"#{@solution.id}" %>
-    <br>
-    <%= submit_tag "Post comment"%>
-
-    <% end  %>

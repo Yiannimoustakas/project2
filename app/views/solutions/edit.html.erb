@@ -17,6 +17,7 @@
   $(document).ready(function(){
     data = (<%= @data %>);
     $form = $('.code-form')
+    $.
     $form.submit( () => {
       RunSolution();
       $('.code-form').append(`<input type='hidden' name='score' value=${score}/>`)

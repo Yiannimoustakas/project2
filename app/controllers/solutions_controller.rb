@@ -59,6 +59,7 @@ class SolutionsController < ApplicationController
   end
 
   def show
+    @comment = Comment.create({body:params[:body]})
     @solution = Solution.find(params[:id])
     @challenge = Challenge.find(@solution.challenge_id)
     @data = getData(@challenge).to_json.html_safe

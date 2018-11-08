@@ -1,7 +1,7 @@
-<%= form_tag comments_path do  %>
+<%= form_for comments_path do  %>
     leave a <%= label_tag :Comment %>: <br>
       <%= text_area_tag :body %> <br>
     <%= hidden_field_tag :solution_id,"#{@solution.id}" %>
     <br>
-    <%= submit_tag "Edit comment"%>
+    <%= submit_tag "Submit comment"%>
     <% end  %>
