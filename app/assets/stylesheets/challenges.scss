@@ -15,11 +15,40 @@
 }
 
 .challGridItem1{
-  border: 1px red solid;
+  // border: 1px red solid;
+  margin-left: 20%
 }
 .challGridItem2{
-  border: 1px red solid;
+  margin-left: 20%
+  // border: 1px red solid;
 }
 .challGridItem3{
-  border: 1px red solid;
+  margin-left: 20%
+  // border: 1px red solid;
+}
+
+.btn btn-primary {
+  width: 50%;
+}
+
+.btn btn-primary btn-lg btn-block {
+  color: white;
+}
+
+
+.card border-primary mb-3{
+  margin-left: 50%
+}
+
+.lol {
+  margin-left: 35%
+}
+
+.mb-3{
+  text-align: center;
+}
+
+
+.challengeName{
+  list-style-type: none;
 }

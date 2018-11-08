@@ -2,14 +2,14 @@
   <div class="challenge-info">
     <h2><a href="/challenges/<%= @challenge.id %>"><%= @challenge.name %></a> </h2>
     <p><%= @challenge.description %></p>
-    <p><%= link_to "Start Another Challenge", challenge_path("#{Challenge.all.ids.sample}") %></p>
+    <p><%= link_to "Start Another Challenge", challenge_path("#{Challenge.all.ids.sample}"), class:"btn btn-success" %></p>
   </div>
   <div class="code-textarea">
     let funk = function(input){
     <textarea name="code" class="codearea" id="editor"><%= @solution.code %></textarea>
     return output;
     <% if @solution.user_id == @current_user.id %>
-      <a href="/solutions/<%= @solution.id %>/edit" class=editLink>Edit Solution</a>
+      <a href="/solutions/<%= @solution.id %>/edit" class="editLink">Edit Solution</a>
     <% end %>
   </div>
   <div class="results">
