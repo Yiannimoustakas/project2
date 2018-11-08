@@ -2,6 +2,7 @@ class SolutionsController < ApplicationController
 
   skip_before_action :verify_authenticity_token
 
+
   def new
     # route to here from a challenge show page, so challenge id will be in params.
     # @challenge = Challenge.first Hard Code.
