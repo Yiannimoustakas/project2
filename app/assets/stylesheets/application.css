@@ -13,11 +13,11 @@
  *= require_tree .
  *= require_self
  *= require codemirror
- *= require codemirror/themes/neat
+ *= require codemirror/themes/dracula
  */
 
 body{
- background-color: #dddddd;
+ background-color:white;
  margin: 0 10px;
  border: 0;
  padding: 0;
@@ -29,7 +29,7 @@ body{
 main{
   height: 95%;
   width: 95%;
-  padding-top: 20px;
+  padding-top: 5vh;
 }
 
 nav {
@@ -72,4 +72,9 @@ nav {
 
 .navLinkOut{
   grid-column-start: 4;
+}
+
+
+.navbar navbar-expand-lg navbar-light bg-dark{
+  width: 100%;
 }

@@ -11,9 +11,11 @@ Rails.application.routes.draw do
   post "/login" => "session#create"
   delete "/login" => "session#destroy"
 
+  get "/solutions/trial" => "solutions#trial"
+  resources :solutions
+
   resources :challenges
   resources :test_pairs
-  resources :solutions
   resources :users
-  resources :comments 
+  resources :comments
 end

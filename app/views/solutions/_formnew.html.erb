@@ -5,10 +5,12 @@
   <div class='mid'>
     <%= form_for @solution, :html => {class: 'code-form'} do |f| %>
       <%= f.hidden_field :score, {value: 0, id: "scorefield" }%>
-      <%= f.hidden_field :challenge_id, value: @solution.challenge_id %>
+      <%= f.hidden_field :challenge_id, {value: @solution.challenge_id, id: "challenge-id"}%>
+      <%= f.hidden_field :user_id, {value: @current_user.id, id: "user-id"}%>
       <%= f.text_area :code, {class: 'codearea', id: 'editor'}%>
-      <%= f.submit 'Save Solution', class: 'submit-button' %>
+      <%= f.submit 'Save Solution', class: 'submit-button btn btn-primary btn-sm' %>
     <% end %>
+    <a href="/solutions/<%= @solution.id %>" method="delete" id="delete-button" class="btn btn-warning">Delete This Solution</a>
   </div>
   <div class='bottom'>
     <textarea name="return" id="returnArea" cols="30" rows="10">    return output;
@@ -18,25 +20,6 @@
 
 <script>
   $(document).ready(function(){
-    let myTextArea = $('#definitionArea')[0];
-    editor = CodeMirror.fromTextArea( myTextArea, {
-      value: myTextArea.value,
-      theme: 'neat',
-      lineNumbers: false,
-      readOnly: true,
-    });
-    myTextArea = $('#returnArea')[0];
-    editor = CodeMirror.fromTextArea( myTextArea, {
-      value: myTextArea.value,
-      theme: 'neat',
-      lineNumbers: false,
-      readOnly: true,
-    });
-    myTextArea = $('.codearea')[0];
-    editor = CodeMirror.fromTextArea( myTextArea, {
-      value: myTextArea.value,
-      theme: 'neat',
-      lineNumbers: true,
-    });
+    convertForm();
   });
 </script>

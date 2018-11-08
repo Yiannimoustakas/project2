@@ -3,7 +3,6 @@
 
 
 
-<h1 class = "loginP">Login</h1>
 
 
 
@@ -15,13 +14,14 @@
   <% end %>
 
   <!-- start of bootstrap -->
+  <h1 class = "loginP">Login</h1>
 
   <div class = "jumbotron jumbotron-login">
   <div class="loginF">
 
     <%= form_tag login_path do %>
     <!-- start of bootstrap -->
-    <%= label_tag :email %>
+    <%= label_tag :email  %>
   <br>
     <%= email_field_tag :email,  nil, class: "form-control"  %> <br> <br>
 

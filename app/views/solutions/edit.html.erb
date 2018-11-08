@@ -4,10 +4,7 @@
     <p><%= @challenge.description %></p>
   </div>
   <div class="code-textarea">
-    let funk = function(input){
     <%= render partial: 'formnew' %>
-    return output;
-    <a href="/solutions/<%= @solution.id %>" method="delete">Delete This Solution</a>
   </div>
   <div class="results">
     <button type="button" name="button" onClick='RunSolution()'>Run Code</button>
@@ -16,24 +13,29 @@
 </div>
 
 <script>
-  let editor;
-  let data;
-  let errors;
-  let score;
   $(document).ready(function(){
-    let myTextArea = $('.codearea')[0];
-    editor = CodeMirror.fromTextArea( myTextArea, {
-      value: myTextArea.value,
-      theme: 'neat',
-      lineNumbers: true,});
-    let funk;
     data = (<%= @data %>);
-    console.log(data);
-    $formSubmit = $('.code-form')
-    $formSubmit.submit( () => {
+    const solutionUrl = "http://localhost:3000/solutions/<%= @solution.id %>"
+    $form = $('.code-form')
+    $form.submit( function(event){
+      event.preventDefault();
       RunSolution();
-      $('.code-form').append(`<input type='hidden' name='score' value=${score}/>`)
-    })
+      $.ajax({
+        type: 'PUT',
+        url: solutionUrl,
+        data: {
+          challenge_id: $('#challenge-id').val(),
+          score: $('#scorefield').val(),
+          code: $('#editor').val()
+        }
+      })
+      .done( response => {
+        $('.results div').text("Saved Succesfully!");
+      })
+      .fail( console.warn )
+      .always(() => {
+        $('.submit-button').prop('disabled', false)
+      });
+    });
   });
-
 </script>
