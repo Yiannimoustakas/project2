@@ -1,13 +1,16 @@
 <div class="grid-Container">
   <div class="challenge-info">
-    <h2><a href="/challenges/<%= @challenge.id %>"><%= @challenge.name %></a> </h2>
+    <h2><a href="/challenges/<%= @challenge.id %>">Solving "<%= @challenge.name %>"</a> </h2>
     <p><%= @challenge.description %></p>
     <p><%= link_to "Start Another Challenge", challenge_path("#{Challenge.all.ids.sample}"), class:"btn btn-success" %></p>
   </div>
   <div class="code-textarea">
-    let funk = function(input){
-    <textarea name="code" class="codearea" id="editor"><%= @solution.code %></textarea>
-    return output;
+    <textarea name="code" class="codearea" id="editor">
+let funk = function(input){
+<%= @solution.code %>
+return output;
+}
+    </textarea>
     <% if @solution.user_id == @current_user.id %>
       <a href="/solutions/<%= @solution.id %>/edit" class="editLink">Edit Solution</a>
     <% end %>
@@ -45,5 +48,12 @@
 <script>
   $(document).ready(function(){
     data = (<%= @data %>);
+  });
+  myTextArea = $('.codearea')[0];
+  editor = CodeMirror.fromTextArea( myTextArea, {
+    value: myTextArea.value,
+    theme: 'dracula',
+    lineNumbers: true,
+    readOnly: true
   });
 </script>
