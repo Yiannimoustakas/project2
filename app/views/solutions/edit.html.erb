@@ -5,7 +5,6 @@
   </div>
   <div class="code-textarea">
     <%= render partial: 'formnew' %>
-    <a href="/solutions/<%= @solution.id %>" method="delete">Delete This Solution</a>
   </div>
   <div class="results">
     <button type="button" name="button" onClick='RunSolution()'>Run Code</button>
@@ -16,12 +15,27 @@
 <script>
   $(document).ready(function(){
     data = (<%= @data %>);
+    const solutionUrl = "http://localhost:3000/solutions/<%= @solution.id %>"
     $form = $('.code-form')
-    $.
-    $form.submit( () => {
+    $form.submit( function(event){
+      event.preventDefault();
       RunSolution();
-      $('.code-form').append(`<input type='hidden' name='score' value=${score}/>`)
-    })
+      $.ajax({
+        type: 'PUT',
+        url: solutionUrl,
+        data: {
+          challenge_id: $('#challenge-id').val(),
+          score: $('#scorefield').val(),
+          code: $('#editor').val()
+        }
+      })
+      .done( response => {
+        $('.results div').text("Saved Succesfully!");
+      })
+      .fail( console.warn )
+      .always(() => {
+        $('.submit-button').prop('disabled', false)
+      });
+    });
   });
-
 </script>

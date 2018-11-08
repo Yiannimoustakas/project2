@@ -1,13 +1,6 @@
-<<<<<<< HEAD
-
-
-<%= form_tag comments_path do  %>
-=======
 <%= form_for comments_path do  %>
->>>>>>> 352957612d449add2daf6ff56ce79ac8c7d89541
-    leave a <%= label_tag :Comment %>: <br>
-      <%= text_area_tag :body %> <br>
-    <%= hidden_field_tag :solution_id,"#{@solution.id}" %>
-    <br>
-    <%= submit_tag "Submit comment"%>
-    <% end  %>
+  leave a <%= label_tag :Comment %>: <br>
+  <%= text_area_tag :body %> <br>
+  <%= hidden_field_tag :solution_id,"#{@solution.id}" %><br>
+  <%= submit_tag "Submit comment"%>
+<% end  %>

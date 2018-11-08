@@ -1,8 +1,9 @@
 <div class="grid-Container">
   <div class="challenge-info">
-    <h2><a href="/challenges/<%= @challenge.id %>"><%= @challenge.name %></a> </h2>
+    <h2><a href="/challenges/<%= @challenge.id %>"><%= @challenge.name %></a></h2>
+    <strong>This is the trial page. Feel free to write some code and play around, but you wont be able to save anything until you're logged into an account</strong>
     <p><%= @challenge.description %></p>
-    <p><%= link_to "Look at Another Challenge", challenges_path%></p>
+    <p><%= link_to "Look at other challenges", challenges_path%></p>
   </div>
   <div class="code-textarea">
     <div class='top'>
@@ -28,21 +29,21 @@
     let myTextArea = $('#definitionArea')[0];
     editor = CodeMirror.fromTextArea( myTextArea, {
       value: myTextArea.value,
-      theme: 'neat',
+      theme: 'dracula',
       lineNumbers: false,
       readOnly: true,
     });
     myTextArea = $('#returnArea')[0];
     editor = CodeMirror.fromTextArea( myTextArea, {
       value: myTextArea.value,
-      theme: 'neat',
+      theme: 'dracula',
       lineNumbers: false,
       readOnly: true,
     });
     myTextArea = $('.codearea')[0];
     editor = CodeMirror.fromTextArea( myTextArea, {
       value: myTextArea.value,
-      theme: 'neat',
+      theme: 'dracula',
       lineNumbers: true,
     });
   });
