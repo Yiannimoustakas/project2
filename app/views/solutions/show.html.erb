@@ -19,19 +19,8 @@
 </div>
 
 <script>
-  let editor;
-  let data;
-  let errors;
-  let score;
   $(document).ready(function(){
-    let myTextArea = $('.codearea')[0];
-    editor = CodeMirror.fromTextArea( myTextArea, {
-      value: myTextArea.value,
-      theme: 'neat',
-      lineNumbers: true,});
-    let funk;
     data = (<%= @data %>);
-    console.log(data);
   });
 </script>
 

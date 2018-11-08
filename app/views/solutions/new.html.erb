@@ -4,9 +4,7 @@
     <p><%= @challenge.description %></p>
   </div>
   <div class="code-textarea">
-    let funk = function(input){
     <%= render partial: 'formnew' %>
-    return output;
   </div>
   <div class="results">
     <button type="button" name="button" onClick='RunSolution()'>Run Code</button>
@@ -15,23 +13,14 @@
 </div>
 
 <script>
-  let editor;
-  let data;
-  let errors;
-  let score;
   $(document).ready(function(){
-    let myTextArea = $('.codearea')[0];
-    editor = CodeMirror.fromTextArea( myTextArea, {
-      value: myTextArea.value,
-      theme: 'neat',
-      lineNumbers: true,});
-    let funk;
     data = (<%= @data %>);
-    console.log(data);
     $form = $('.code-form')
     $form.submit( event => {
-      RunSolution()
-      event.target[2].value = score
+      event.preventDefault();
+      console.log(event);
+      RunSolution();
+      event.target[2].value = score;
     })
   });
 </script>

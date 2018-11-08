@@ -4,16 +4,20 @@
 //= require_tree .
 
 
+let editor;
+let data;
+let errors;
+let score;
+let funk;
 
 const RunSolution = () => {
   let js = editor.getValue();
   let correctAnswers = 0;
   let failedInputs = [];
-  let s;
   let totalTests = data.inputs.length;
-  s = document.createElement('script');
+  let s = document.createElement('script');
   s.textContent = `
-    funk = input => {
+    funk = function(input){
       ${js}
       return output;
     }`
@@ -21,8 +25,6 @@ const RunSolution = () => {
   try {
     for (var i = 0; i < data.inputs.length; i++) {
       output = funk(data.inputs[i]);
-      console.log(`comparing ${output} to ${data.outputs[i]}`);
-      console.log(arrayEquality(data.outputs[i], output));
       if (output === data.outputs[i] || (data.outputs[i].constructor === Array && output.constructor === Array && arrayEquality(data.outputs[i], output))) {
         correctAnswers ++;
       }else{
@@ -63,10 +65,6 @@ const arrayEquality = (arr1, arr2) => {
     }
   }
   return true;
-}
-
-const testing = () => {
-  console.log("heeeelp");
 }
 
 handleError = err =>{
