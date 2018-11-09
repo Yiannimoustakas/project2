@@ -31,6 +31,7 @@ return output;
         <% if comment.user_id == @current_user.id %>
         <span><%= link_to 'remove', comment_path(comment.id), method: 'delete' %> </span>
         <% end %>
+        <% end %>
       <% end %>
     </div>
     <br>
