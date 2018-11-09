@@ -13,7 +13,7 @@ class SolutionsController < ApplicationController
       )
       redirect_to edit_solution_path @solution.id
     else
-      redirect_to solution_trial_path @challenge.id
+      redirect_to solutions_trial_path(params: {id: @challenge.id})
     end
   end
 

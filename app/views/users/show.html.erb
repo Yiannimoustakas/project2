@@ -1,52 +1,49 @@
 <div class ="wrapper">
-
-
-
   <div class ="left-Col">
-  <p class = "link btn btn-primary btn-lg btn-block"><%= link_to 'Start new challenge', challenges_path, class:"alink"	 %></p>
+    <p class = "link btn btn-primary btn-lg btn-block">
+      <%= link_to 'Start new challenge', challenges_path, class:"alink"	 %>
+    </p>
     <div class="card bg-light mb-3" style="max-width: 90rem;">
-      <div class="card-header"><h6>View Your solutions</h6></div>
+      <div class="card-header">
+        <h6>View Your solutions</h6>
+      </div>
       <div class="card-body">
         <h5 class="card-title"></h5>
-        <p class="card-text"><ul class="yoursolutions">
+        <p class="card-text">
+          <ul class="yoursolutions">
           <% @user.solutions.each do |solution| %>
-          <li>
-            <%= link_to "#{solution.challenge.name}", solution_path(solution.id)  %> Created
-
-            <%= time_ago_in_words(solution.created_at) %>
-
-
-
-            <%# <%=  solution.created_at %>
-
-
-          </li>
-          <% end %>
-        </ul>
+            <li>
+              <%= link_to "#{solution.challenge.name}", solution_path(solution.id)  %>
+              Created
+              <%= time_ago_in_words(solution.created_at) %>
+            </li>
+            <% end %>
+          </ul>
+        </p>
       </div>
-      </div>
-
     </div>
-
+  </div>
 
   <div class="right-Col">
-    <p class="btn btn-primary btn-lg btn-block"><%= link_to 'Create new challenge', new_challenge_path, class:"alink" %><h6></h6>
-  <div class="card bg-light mb-3" style="max-width: 50rem;">
-    <div class="card-header">      <h6>Your challenges</h6>
-</div>
-    <div class="card-body">
-      <h6 class="card-title">
-      <p class="card-text">      <ul class="yourchallenge">
+    <p class="link btn btn-primary btn-lg btn-block">
+        <%= link_to      'Create new challenge', new_challenge_path, class:"alink" %>
+    </p>
+    <div class="card bg-light mb-3" style="max-width: 50rem;">
+      <div class="card-header">
+            <h6>Your challenges</h6>
+      </div>
+      <div class="card-body">
+         <p class="card-text">
+          <ul class="yourchallenge">
             <% @user.challenges.each do |challenge| %>
               <li>
                 <%= link_to challenge.name, challenge_path(challenge.id) %> created
                 <%= time_ago_in_words(challenge.created_at) %>
-                <%# <%= challenge.created_at %>
-
-
-                 </li>
-              <% end %>
-            </ul></p>
+               </li>
+            <% end %>
+          </ul>
+        </p>
+      </div>
     </div>
-
   </div>
+</div>

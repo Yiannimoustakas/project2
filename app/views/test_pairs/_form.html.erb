@@ -13,14 +13,14 @@
 
   <%= form_for @test_pair do |f| %>
   <%= f.label :input %>
-  <%= f.text_field :input, class: "form-control" %>
+  <%= f.text_field :input, class: "form-control test" %>
   <br>
   <%= f.label :input_type %>
   <%= f.select :input_type, ["integer", "string", "array"], class: "form-control" %>
   <br>
   <br>
   <%= f.label :output %>
-  <%= f.text_field :output, class: "form-control" %>
+  <%= f.text_field :output, class: "form-control test" %>
   <br>
   <%= f.label :output_type %>
   <%= f.select :output_type, ["integer", "string", "array"], class: "form-control" %>
