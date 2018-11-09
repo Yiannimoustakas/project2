@@ -29,10 +29,10 @@ return output;
         <div class="commentBox">
           <strong><p><%= comment.user.name %> says:</p></strong>
           <p><%= simple_format(comment.body) %></p>
-          <p class="comment">created <%= time_ago_in_words(comment.created_at) %> ago</p>
+          <span class="comment">created <%= time_ago_in_words(comment.created_at) %> ago</span>
           <% if @current_user.present? %>
             <% if comment.user_id == @current_user.id %>
-            <p class="comment"><%= link_to 'remove', comment_path(comment.id), method: 'delete' %> </p>
+            <span class="comment"><%= link_to 'remove', comment_path(comment.id), method: 'delete' %> </span>
             <% end %>
           <% end %>
         </div>
