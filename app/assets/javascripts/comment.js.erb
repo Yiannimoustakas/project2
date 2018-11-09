@@ -10,10 +10,10 @@ $(document).ready(function() {
       // append new comment to existing list of comments
       $(
          `<div class="commentBox">
-          <strong><p>${response.user.name} says:</p></strong>
-          <p>${response.body}</p>
-          <p class="comment">created just now</p>
-          <p class="comment"><a href="/comments/${response.id}" data-method= 'delete'>remove</a></p>
+            <strong><p>${response.user.name} says:</p></strong>
+            <p>${response.body}</p>
+            <span class="comment">created just now</span>
+            <span class="comment"><a href="/comments/${response.id}" data-method= 'delete'>remove</a></span>
           </div>`
         ).appendTo(".allComments");
       $("#body").val("");
