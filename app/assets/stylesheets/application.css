@@ -79,6 +79,12 @@ nav {
   width: 100%;
 }
 
-nav:hover{
-  background-color: yellow;
+.challenges{
+  color: white;
+}
+
+
+.alink {
+  font-size: 20px;
+
 }

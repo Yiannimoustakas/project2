@@ -1,6 +1,7 @@
 
 <div class= buttons >
-<%= link_to "Random Challenge Generator", challenge_path(@random), class:"btn btn-primary" %>
+  <%= link_to "Random Challenge", challenge_path(@random), class:"btn btn-primary" %>
+  <% if @current_user.present? %>
 
 <% if @current_user.present? %>
 <%= link_to 'Add New Challenge', new_challenge_path, class:"btn btn-success" %>
@@ -12,11 +13,10 @@
       <p class="card-text">  <% @challenges.each do |challenge| %>
           <li class="challengeName">
            <%= link_to challenge.name, challenge_path(challenge.id)  %>
+
+
           </li>
-        <% end %>
-
-
-
-      </p>
+      <% end %>
+    </p>
     </div>
   </div>
