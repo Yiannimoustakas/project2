@@ -18,21 +18,22 @@ return output;
     <% end %>
   </div>
   <div class="results">
-    <button class="runButton btn btn-info" type="button" name="button" onClick='RunSolution()'>Run Code</button>
     <div class="resultAppend">
+      This solution produced the correct output for <%= @solution.score %>% of the given inputs.
     </div>
   </div>
   <div class="commentSection">
     <h2>Comments</h2>
     <% @solution.comments.each do |comment| %>
-    <div class="comment">
-      <span><strong><%= comment.body %></strong><br> - <%= comment.user.name %> <%= time_ago_in_words(comment.created_at) %> ago</span>
-      <% if @current_user.present? %>
-        <% if comment.user_id == @current_user.id %>
-        <span><%= link_to 'remove', comment_path(comment.id), method: 'delete' %> </span>
+      <div class="comment">
+        <span><strong>"<%= comment.body %>"</strong><br> - <%= comment.user.name %> <%= time_ago_in_words(comment.created_at) %> ago</span>
+        <% if @current_user.present? %>
+          <% if comment.user_id == @current_user.id %>
+          <span><%= link_to 'remove', comment_path(comment.id), method: 'delete' %> </span>
+          <% end %>
         <% end %>
-      <% end %>
-    </div>
+      </div>
+    <% end %>
     <br>
     <%= form_tag(comments_path, {class: "commentsForm"}) do  %>
       leave a <%= label_tag :Comment %>: <br>

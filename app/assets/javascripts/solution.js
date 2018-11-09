@@ -6,7 +6,7 @@ let score;
 const RunSolution = () => {
   let js = editor.getValue();
   let correctAnswers = 0;
-  let failedInputs = [];
+  let outputs = [];
   let totalTests = data.inputs.length;
   let s = document.createElement('script');
   s.textContent = `
@@ -19,9 +19,10 @@ const RunSolution = () => {
     for (var i = 0; i < data.inputs.length; i++) {
       output = funk(data.inputs[i]);
       if (output === data.outputs[i] || (data.outputs[i].constructor === Array && output.constructor === Array && arrayEquality(data.outputs[i], output))) {
+        outputs.push(`Input <strong>${data.inputs[i]}</strong> succeeded with: <strong>${output}</strong>`);
         correctAnswers ++;
       }else{
-        failedInputs.push(`Input "${data.inputs[i]}" generated the incorrect answer: "${output}"`);
+        outputs.push(`Input <strong>${data.inputs[i]}</strong> generated the incorrect answer: <strong>${output}</strong>`);
       }
     }
     score = Math.round((correctAnswers/data.inputs.length) * 100);
@@ -39,8 +40,8 @@ const RunSolution = () => {
   $('.results div').empty();
   $('.results div').text(message);
   $('.results div').append($('<ul>'))
-  for (var i = 0; i < failedInputs.length; i++) {
-    $('.results div').append($(`<li>${failedInputs[i]}</li>`))
+  for (var i = 0; i < outputs.length; i++) {
+    $('.results div').append($(`<li>${outputs[i]}</li>`))
   }
   $('#scorefield').val(score);
   s.remove()
