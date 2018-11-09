@@ -18,8 +18,20 @@
     <br>
     <br>
     <p><strong>Description:</strong> <%= @challenge.description %></p>
-    <p><strong>Difficulty:</strong> ?</p>
-    <p><strong>Completion Rate:</strong> ?</p>
+    <p><strong>Difficulty:</strong>
+      <% if !@difficulty %>
+      Challenge Not Yet Attempted
+      <% else %>
+        <%= @difficulty %>
+      <% end %>
+    </p>
+    <p><strong>Completion Rate:</strong>
+      <% if !@solved_rate %>
+        Challenge Not Yet Attempted
+      <% else %>
+        <%= @solved_rate %>%
+      <% end %>
+    </p>
     <p><strong>Created By:</strong> <%= @challenge.user.name %>
 
 

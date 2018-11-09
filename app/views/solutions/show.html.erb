@@ -25,12 +25,12 @@ return output;
     <div class="allComments">
       <% @solution.comments.each do |comment| %>
         <div class="commentBox">
-          <h4><%= comment.user.name %>  says:</h4>
+          <strong><p><%= comment.user.name %> says:</p></strong>
           <p><%= simple_format(comment.body) %></p>
-          <h5 class="comment">created <%= time_ago_in_words(comment.created_at) %> ago</h5>
+          <p class="comment">created <%= time_ago_in_words(comment.created_at) %> ago</p>
           <% if @current_user.present? %>
             <% if comment.user_id == @current_user.id %>
-            <h5 class="comment"><%= link_to 'remove', comment_path(comment.id), method: 'delete' %> </h5>
+            <p class="comment"><%= link_to 'remove', comment_path(comment.id), method: 'delete' %> </p>
             <% end %>
           <% end %>
         </div>
