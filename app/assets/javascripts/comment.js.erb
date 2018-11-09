@@ -1,5 +1,5 @@
 $(document).ready(function() {
-  const url = "http://localhost:3000/comments"
+  const url = "https://solution-undefined.herokuapp.com/comments"
   $(".commentsForm").on('submit', () => {
     $.post(url, {
       body: $("#body").val(),
