@@ -1,4 +1,7 @@
 class CommentsController < ApplicationController
+  skip_before_action :verify_authenticity_token
+  before_action :cors_allow
+
   def show
   end
 
@@ -68,4 +71,9 @@ class CommentsController < ApplicationController
   def comment_params
     params.require(:comments).permit(:body)
   end
+
+  def cors_allow
+    headers['Access-Control-Allow-Origin'] = '*';
   end
+
+end
