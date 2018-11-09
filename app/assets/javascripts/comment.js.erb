@@ -7,19 +7,22 @@ $(document).ready(function() {
     })
     .done(response => {
       console.log('response', response);
-
       // append new comment to existing list of comments
-      $(`  <div class="commentBox">
-          <h4>${response.user.name}  says:</h4>
+      $(
+         `<div class="commentBox">
+          <strong><p>${response.user.name} says:</p></strong>
           <p>${response.body}</p>
-          <h5 class="comment">created ${Date.now()}</h5>
-          <h5 class="comment"><a href="/solutions/${response.solution_id}" data-method: 'delete'>remove</a></h5>
-        </div>`).appendTo(".allComments")
-
-
+          <p class="comment">created just now</p>
+          <p class="comment"><a href="/comments/${response.id}" data-method= 'delete'>remove</a></p>
+          </div>`
+        ).appendTo(".allComments");
+      $("#body").val("");
     })
     .fail(console.warn);
     return false;
+  });
+  $(".commentBox a").on("click", () => {
+    console.log("hello");
   });
 
 })

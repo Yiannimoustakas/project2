@@ -27,6 +27,11 @@ class ChallengesController < ApplicationController
       @solutions = @current_user.solutions
       @solution = show_current_solution(@solutions, params[:id])
     end
+    if @challenge.solutions.length > 0
+      solved_rate = @challenge.solutions.map  { |x| x.score }
+      @solved_rate = (solved_rate.reduce(:+))/solved_rate.length
+      @difficulty = difficulty_rating(@solved_rate)
+    end
   end
 
   def edit
@@ -73,6 +78,20 @@ class ChallengesController < ApplicationController
       if element.id == num
         element
       end
+    end
+  end
+
+  def difficulty_rating(rating)
+    rate = rating.to_i
+    case
+    when rate >= 75
+      "Easy"
+    when rate < 75.0 && rate >= 50
+      "Medium"
+    when rate < 50 && rate >= 25
+      "Hard"
+    when rate < 25
+      "Diabolical"
     end
   end
 end

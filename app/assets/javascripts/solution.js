@@ -6,22 +6,24 @@ let score;
 const RunSolution = () => {
   let js = editor.getValue();
   let correctAnswers = 0;
-  let failedInputs = [];
+  let outputs = [];
   let totalTests = data.inputs.length;
-  let s = document.createElement('script');
+  let s = document.createElement('script'); // create a script tag and put the script the person wrote into it to be executed.
   s.textContent = `
     funk = function(input){
       ${js}
       return output;
     }`
-  document.body.appendChild(s);
-  try {
+  document.body.appendChild(s); // append the script which will execute it, creating the funk function.
+  try { // run the function for all the test data points in a try block to catch the errors.
     for (var i = 0; i < data.inputs.length; i++) {
       output = funk(data.inputs[i]);
+      //monster if statement. 
       if (output === data.outputs[i] || (data.outputs[i].constructor === Array && output.constructor === Array && arrayEquality(data.outputs[i], output))) {
+        outputs.push(`Input <strong>${data.inputs[i]}</strong> succeeded with: <strong>${output}</strong>`);
         correctAnswers ++;
       }else{
-        failedInputs.push(`Input "${data.inputs[i]}" generated the incorrect answer: "${output}"`);
+        outputs.push(`Input <strong>${data.inputs[i]}</strong> generated the incorrect answer: <strong>${output}</strong>`);
       }
     }
     score = Math.round((correctAnswers/data.inputs.length) * 100);
@@ -39,8 +41,8 @@ const RunSolution = () => {
   $('.results div').empty();
   $('.results div').text(message);
   $('.results div').append($('<ul>'))
-  for (var i = 0; i < failedInputs.length; i++) {
-    $('.results div').append($(`<li>${failedInputs[i]}</li>`))
+  for (var i = 0; i < outputs.length; i++) {
+    $('.results div').append($(`<li>${outputs[i]}</li>`))
   }
   $('#scorefield').val(score);
   s.remove()
