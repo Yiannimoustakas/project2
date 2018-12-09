@@ -1,32 +1,38 @@
 # Project 2
 
-https://solution-undefined.herokuapp.com/
+<https://solution-undefined.herokuapp.com/>
 
-** The objective of this project is: **
-- To pull everything together by building a web application from the ground up.
-- To demonstrate mastery of topics covered during this course so far.
+## Project Description
 
-** CORE REQUIREMENTS **
--Make sure to do all of the following with your app:
+For our third project of wdi29, we were tasked with working on an end to end project in a groups of three. This was the first project where as a group, we had complete reigns to create whatever web application we were interested in. We had 1 week to complete this task.
 
-- Models. Your app should have at least 3 models. Make sure they are associated correctly! If you didn't get to try a many-to-many association in your last project (i.e. for likes/faves, shortlist of items, users following/friending other users, etc) this might be a good chance to try out that more challenging database structure.
-- Views. Use partials to DRY (Don’t Repeat Yourself) up your views.
-- Handles invalid data. Forms in your application should validate data and handle incorrect inputs. - Validate sign up information, verify valid (and unique) email addresses, and secure passwords.
-Use Gems. Use a GEM to add extra functionality to your app.
-- Use AJAX. Make AJAX requests to handle any interactions with your own server that should happen transparently, i.e. without a page reload (such as liking/favouriting a post, adding tags, autocomplete-based search, etc).
-- User Login. Make sure you have basic authentication and authorization set up. Ensure that users cannot edit the items created by other users, and that general users cannot access admin-only features!
-- Heroku. Deploy your code to Heroku.
+## Solution Undefined: 
 
-#### ** Solution Undefined: **
+Our project is a coding challenge sandbox similar to the likes of Exorcism or Codewars. Users can create new challenges that are sent directly into ou rdatabase where other users can then complete the challenges directly within their browser. We felt this could become a useful application for the future generations of programmers who are keen to sharpen their skills in a number of short and sharp coding challenges.
 
-Our project is a coding challenge sandbox similar to codewars, where users respond to challenges by writing a solution in the browser. Users can also define a challenge for others to answer.
+Once logged in, the user is sent to their home page. On this page they have a number of ui options to choose from, such as creating new coding challenges, starting solutions for existing challenges and the ability to edit their user details.
 
-To do this we need to find a way to write and test code in the browser, save it for re-loading and editing and 'rate' it in some manner to evaluate how the user performed.
+To create a new challenge, a user must: 
+- include a clear description of the challenge at hand
+- include test pairs i.e. inputs and outputs. The inputs will be what the text editor runs when it is checking the users function. The output is an example of what the user would expect when the function is run.
 
-** current features: **
+Now in order for the coding challenges to work, we implemented our own text editor right into the browser. We used Codemirror as our text editor plug in, and it works seamlessly into the app. This may have been one of the most challenging details of the site. We need to check firstly that the user who created the challenge has provided the right type of test pairs. They must match the data type: array, string or integer. Once the user has matched all of the test pairs, they will earn themselves a score of 100. Until then the solution will be deemed as incopmplete.
 
-- User sign up and log in.
-- challenge posting
-- solution posting
-- codemirror code editor for solutions
--
+## Project Features
+
+- User authentication
+- Built-in text editor, that checks the solution against all valid test pairs
+- User comments and likes
+- Random challenge generator
+
+## Tech Used
+
+- Ruby on Rails MVC
+- Code Mirror text editor
+- jQuery
+
+## Known Bugs & Wishlist
+
+- Grab coding challenges from Exorcism API.
+- Challenge classes/playlists
+- Grouping challenges into skill most utilised
